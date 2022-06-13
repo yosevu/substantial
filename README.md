@@ -19,5 +19,6 @@ heading: This is Note 1
 subheading: This is the subheading for Note 1.
 id: note-1
 date: 2019-12-01
+
 tags: tag1 tag2
 ```

@@ -31,8 +31,9 @@
 (comment
   (let [notes (get-notes "notes")] 
     (println notes)
-    (write-page (first notes))
-    (-main (get-notes "notes")))
+    (write-page (first notes)))
+  
+  (-main (get-notes "notes"))
   
   (io/delete-file "note-2.html")
 

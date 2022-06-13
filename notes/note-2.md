@@ -1,5 +1,5 @@
-title: Note 2
-subtitle: A subtitle for Note 2.
+heading: Note 2
+subheading: A subtitle for Note 2.
 date: 2019-12-02
 id: note-2
 tags: tag2

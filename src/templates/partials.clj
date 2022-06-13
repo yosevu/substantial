@@ -1,11 +1,10 @@
 (ns templates.partials
-  (:require [hiccup.page :refer [html5]]
-            [hiccup.core :refer [html]]
-            [hiccup.element :refer [link-to]]))
+  (:require [hiccup.page :refer [html5]]))
+
+(def site-url "https://notes.yosevu.com")
 
 (defn head [{:keys [title desc]}]
   [:head
-
    [:meta {:charset "UTF-8"}]
    [:meta {:http-equiv "X-UA-Compatible"}]
    [:meta {:name "viewport"
@@ -16,19 +15,23 @@
            :content desc}]
    [:meta {:name "keywords"
            :content ""}]
-   [:title title]])
+   [:title title]
+   [:link {:href "css/main.css"      :rel "stylesheet"}]
+   [:link {:href "css/a11y-dark.css" :rel "stylesheet"}]])
 
 (defn body [content]
   [:body
-   [:div {:id "substantial"} content]])
+   [:nav [:a {:href (str site-url "/index.html")} "Home"]]
+   [:main
+    [:article content]]])
 
 (defn page [head body]
   (html5 {:lang "en"}
          head
          body))
 
-
-(comment
+(comment 
+  (page (head {:title "hello" :desc "world"}) (body "content"))
   (defn temp [{:keys [title description]}]
     [:div
      [:title title]
