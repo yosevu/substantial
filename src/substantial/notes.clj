@@ -8,11 +8,11 @@
 (defn md->html [files]
   (map md-to-html-string-with-meta files))
   
-(defn sort-by-date [posts]
-  (reverse (sort-by #(get-in (:metadata %) [:date]) posts)))
+(defn sort-by-date [notes]
+  (reverse (sort-by #(get-in (:metadata %) [:date]) notes)))
 
-(defn into-map [posts-map post]
-  (assoc posts-map (keyword (first (:id (:metadata post)))) post))
+(defn into-map [notes-map note]
+  (assoc notes-map (keyword (first (:id (:metadata note)))) note))
 
 (defmacro get-notes [path]
   (reduce into-map {} (sort-by-date (md->html (slurp-dir path)))))

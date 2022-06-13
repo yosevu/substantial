@@ -1,30 +1,39 @@
 (ns substantial.core
-  (:require [substantial.notes :refer [get-notes]]
+  (:require [clojure.java.io :as io]
+            [substantial.notes :refer [get-notes]]
             [templates.note :refer [note-page]]))
 
+(def dir "public")
+(def ext "html")
+
 (defn note-pages
-  "Create pages for notes."
+  "Create note pages with `notes` and `<template>-page`."
   [notes]
   (for [[page-name note] notes]
     [page-name (note-page note)]))
 
-(defn write-page [[page-name content]]
-  (spit (str "public/" (name page-name) ".html") content))
+(defn write-page
+  "Write `page-name` and `content` to `dir`."
+  [[page-name content]]
+  (spit (str dir "/" (name page-name) "." ext) content))
 
-(defn write-pages [notes]
-  (map write-page (note-pages notes)))
+(defn write-pages
+  "Write `pages` to files with `write-page`."
+  [pages]
+  (map write-page pages))
 
 (defn -main
-  "Write note pages to files."
-  []
-  (write-pages (get-notes "notes"))
-  (println "Called (-main)"))
+  "Write `notes` to files with `<template>-pages`."
+  [notes]
+  (println "Running (-main)...")
+  (write-pages (note-pages notes)))
 
 (comment
-  ;; (get-notes "notes")
-  ;; (for [[_ note] (get-notes "notes")] note)
-  ;; (let [notes (get-notes "notes")] notes)
-  ;; (note-pages (get-notes "notes"))
-  ;; (map write-page (note-pages (get-notes "notes")))
-  (-main)
+  (let [notes (get-notes "notes")] 
+    (println notes)
+    (write-page (first notes))
+    (-main (get-notes "notes")))
+  
+  (io/delete-file "note-2.html")
+
   )
