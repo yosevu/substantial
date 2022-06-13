@@ -21,9 +21,11 @@
 
 (defn body [content]
   [:body
-   [:nav [:a {:href (str site-url "/index.html")} "Home"]]
+   [:nav [:a {:href (str site-url "/index.html")} "Index"]]
    [:main
-    [:article content]]])
+    [:article content]]
+   [:script {:src "js/highlight.min.js"}]
+   [:script "hljs.highlightAll()"]])
 
 (defn page [head body]
   (html5 {:lang "en"}

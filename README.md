@@ -1,4 +1,8 @@
-# substantial
+# Substantial
+
+> How can I be substantial if I do not cast a shadow? I must have a dark side also If I am to be whole. - C.G. Jung, Modern Man in Search of a Soul
+
+## Project structure
 
 > How can I be substantial if I do not cast a shadow? I must have a dark side also If I am to be whole.
  - C.G. Jung, Modern Man in Search of a Soul

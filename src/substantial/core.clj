@@ -25,8 +25,8 @@
 (defn -main
   "Write `notes` to files with `<template>-pages`."
   [notes]
-  (println "Running (-main)...")
-  (write-pages (note-pages notes)))
+  (let [write-results (write-pages (note-pages notes))]
+    (println (str "Wrote " (count write-results) " pages."))))
 
 (comment
   (let [notes (get-notes "notes")] 
