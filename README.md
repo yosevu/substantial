@@ -12,17 +12,16 @@
 ## Metadata
 
 - `heading` (required): The main heading.
-- `subheading`: The secondary heading.
-- `id` (required): The `id` used to identify and link to the note.
+- `subhead`: The secondary heading.
+- `slug` (required): The short name displayed in the url to link to the note.
 - `date` (required): The publication date.
 - `tags`: A list of tags used to categorize the note.
 
 Example:
 ```markdown
 heading: This is Note 1
-subheading: This is the subheading for Note 1.
-id: note-1
+subhead: This is the subheading for Note 1.
+slug: note-1
 date: 2019-12-01
-
 tags: tag1 tag2
 ```
