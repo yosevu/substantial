@@ -4,16 +4,40 @@
             [markdown.core :refer [md-to-html-string-with-meta]]
             [markdown.transformers :refer [transformer-vector]]))
 
-(def site-url "https://notes.yosevu.com/")
+(def site-url "https://notes.yosevu.com")
 (def default-notes-path "notes")
 
 (defn slurp-dir [path]
   (map slurp (rest (file-seq (io/file path)))))
 
-(def backlink-match #"(.*)(\]\()([a-z0-9|-]+)(.*)")
+(def backlink-match 
+  " Matches a relative backlink.
+   
+    Example:
+   
+    before text [I am a backlink](/i-am-a-backlink) after text
+            
+    (.*)(\]\()(\/)([a-z0-9|-]+)(.*)
+    $1  $2    $3  $4           $5
+   
+    $1: (.*)         : before text [I am a backlink
+    $2: (\]\()       : ](
+    $3: (\/)         : /
+    $4: ([a-z0-9|-]+): i-am-a-backlink
+    $5: (.*)         : ) after text
+  "
+  #"(.*)(\]\()(\/)([a-z0-9|-]+)(.*)")
 
-(defn backlink-replacement [site-url]
-  (str "$1" "$2" site-url "$3" ".html" "$4"))
+(defn backlink-replacement
+  "Prepends: site-url to relative backlink.
+   
+   Example:
+
+   [I am a backlink](/i-am-a-backlink)
+   [I am a backlink](https://<site-url>/i-am-a-backlink.html)
+  "
+  [site-url]
+  (str "$1" "$2" site-url "$3" "$4" ".html" "$5"))
 
 (defn add-backlink [backlink-text state]
   [(string/replace backlink-text backlink-match
@@ -43,14 +67,13 @@
   ((keyword slug) (get-notes)))
 
 (comment
-  (def backlink-text "abc[Today I learned](learning-journal)123")
-
-  (string/replace backlink-text backlink-match
-                  (backlink-replacement site-url))
+  (let [backlink-text "abc[Today I learned](/learning-journal)123"]
+    (string/replace backlink-text backlink-match
+                  (backlink-replacement site-url)))
   ;; => "[Today I learned](https://notes.yosevu.com/learning-journal.html)"
 
-  (md-to-html-string-with-meta
-   backlink-text
-   :replacement-transformers
-   [add-backlink]) 
+  ;; (md-to-html-string-with-meta
+  ;;  backlink-text
+  ;;  :replacement-transformers
+  ;;  [add-backlink]) 
   )
