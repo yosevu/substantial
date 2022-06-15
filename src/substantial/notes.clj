@@ -16,15 +16,12 @@
     Example:
    
     before text [I am a backlink](/i-am-a-backlink) after text
-            
-    (.*)(\]\()(\/)([a-z0-9|-]+)(.*)
-    $1  $2    $3  $4           $5
    
-    $1: (.*)         : before text [I am a backlink
-    $2: (\]\()       : ](
-    $3: (\/)         : /
-    $4: ([a-z0-9|-]+): i-am-a-backlink
-    $5: (.*)         : ) after text
+    $1: (.*)           : before text [I am a backlink
+    $2: (]()           : ]()
+    $3: (/)            : /
+    $4: ([a-z0-9|-]+)  : i-am-a-backlink
+    $5: (.*)           : ) after text
   "
   #"(.*)(\]\()(\/)([a-z0-9|-]+)(.*)")
 

@@ -34,7 +34,7 @@
     (write-page (first notes)))
   
   (get-notes)
-  (get-note "backlinks-test")
+  ;; (get-note "backlinks-test")
   (-main (get-notes))
   
   (io/delete-file "note-2.html")

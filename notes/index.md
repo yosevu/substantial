@@ -1,7 +1,9 @@
 heading: Index
-subheading: This is the index.
-date: 2022-06-13
+subheading: 
+date: 2020-09-25
 slug: index
 tags:
 
-This is the index.
+- [4Clojure](/4clojure)
+- [Learning journal](/learning-journal)
+- [What brains are good for](/what-brains-are-good-for)

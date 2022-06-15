@@ -17,7 +17,7 @@
            :content ""}]
    [:title title]
    [:link {:href "css/main.css"      :rel "stylesheet"}]
-   [:link {:href "css/a11y-dark.css" :rel "stylesheet"}]])
+   [:link {:href "css/a11y-dark.min.css" :rel "stylesheet"}]])
 
 (defn body [content]
   [:body
