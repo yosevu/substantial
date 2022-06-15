@@ -435,61 +435,59 @@ Regex patterns are supported with a special reader macro.
 ## 40. Interpose a seq
 
 *<span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span>*
-(/)
-[Today I learned](/learning-journal) 
 [Today I learned](learning-journal.md) that nested `#()` are not allowed.
-
-    (defn interpose-a-seq
-      "Write a function which separates the items of a sequence by an arbitrary value."
-      [sep coll]
-      (drop-last (reduce #(conj %1 %2 sep) [] coll)))
-
+```clojure
+(defn interpose-a-seq
+  "Write a function which separates the items of a sequence by an arbitrary value."
+  [sep coll]
+  (drop-last (reduce #(conj %1 %2 sep) [] coll)))
+```
 **Tests**
-
-    (deftest interpose-a-seq
-      (is (= (interpose-a-seq 0 [1 2 3]) [1 0 2 0 3]))
-      (is (= (apply str (interpose-a-seq ", " ["one" "two" "three"])) "one, two, three"))
-      (is (= (interpose-a-seq :z [:a :b :c :d]) [:a :z :b :z :c :z :d])))
-
+```clojure
+(deftest interpose-a-seq
+  (is (= (interpose-a-seq 0 [1 2 3]) [1 0 2 0 3]))
+  (is (= (apply str (interpose-a-seq ", " ["one" "two" "three"])) "one, two, three"))
+  (is (= (interpose-a-seq :z [:a :b :c :d]) [:a :z :b :z :c :z :d])))
+```
 ## 41. Drop every nth item
 
 *<span class="timestamp-wrapper"><span class="timestamp">[2020-10-13 Tue]</span></span>*
-
-    (defn drop-every-nth-item
-      "Write a function which drops every Nth item from a sequence."
-      [n coll]
-      (apply concat (partition-all (dec n) n coll)))
-
+```clojure
+(defn drop-every-nth-item
+  "Write a function which drops every Nth item from a sequence."
+  [n coll]
+  (apply concat (partition-all (dec n) n coll)))
+```
 **Tests**
-
-    (deftest drop-every-nth-item
-      (is (= (drop-every-nth-item 3 [1 2 3 4 5 6 7 8]) [1 2 4 5 7 8]))
-      (is (= (drop-every-nth-item 2 [:a :b :c :d :e :f]) [:a :c :e]))
-      (is (= (drop-every-nth-item 4 [1 2 3 4 5 6]) [1 2 3 5 6])))
-
+```clojure
+(deftest drop-every-nth-item
+  (is (= (drop-every-nth-item 3 [1 2 3 4 5 6 7 8]) [1 2 4 5 7 8]))
+  (is (= (drop-every-nth-item 2 [:a :b :c :d :e :f]) [:a :c :e]))
+  (is (= (drop-every-nth-item 4 [1 2 3 4 5 6]) [1 2 3 5 6])))
+```
 `partition` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It allows you to divide a list of items into a collection of smaller lists. The step option lets you skip items in the list that you do not want to include in the smaller lists.
 
 **Note**: I flipped the parameters in order to pass the data as the last argument. This simplifies function composition as described in [Introducing Ramda](http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda).
 
 ## 42. Factorial fun
-
-    (defn factorial-fun
-      "Write a function which calculates factorials."
-      [n]
-      (reduce * (range 1 (inc n))))
-
+```clojure
+(defn factorial-fun
+  "Write a function which calculates factorials."
+  [n]
+  (reduce * (range 1 (inc n))))
+```
 **Short solution**
-
-    #(reduce * (range 1 (inc %)))
-
+```clojure
+#(reduce * (range 1 (inc %)))
+```
 **Tests**
-
-    (deftest factorial-fun
-      (is (= (factorial-fun 1) 1))
-      (is (= (factorial-fun 3) 6))
-      (is (= (factorial-fun 5) 120))
-      (is (= (factorial-fun 8) 40320)))
-
+```clojure
+(deftest factorial-fun
+  (is (= (factorial-fun 1) 1))
+  (is (= (factorial-fun 3) 6))
+  (is (= (factorial-fun 5) 120))
+  (is (= (factorial-fun 8) 40320)))
+```
 ## 43.
 
 Apply cf. unapply
@@ -500,9 +498,9 @@ Packs vs. unpacks a value
 <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max>
 
 ## 64. Intro to reduce
-
-    (deftest intro-to-reduce
-      (is (= 15 (reduce + [1 2 3 4 5])))
-      (is (=  0 (reduce + [])))
-      (is (=  6 (reduce + 1 [2 3]))))
-
+```clojure
+(deftest intro-to-reduce
+  (is (= 15 (reduce + [1 2 3 4 5])))
+  (is (=  0 (reduce + [])))
+  (is (=  6 (reduce + 1 [2 3]))))
+```

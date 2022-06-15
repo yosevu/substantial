@@ -1,6 +1,6 @@
 (ns substantial.core
   (:require [clojure.java.io :as io]
-            [substantial.notes :refer [get-notes]]
+            [substantial.notes :refer [get-note get-notes]]
             [templates.note :refer [note-page]]))
 
 (def dir "public")
@@ -33,7 +33,9 @@
     (println notes)
     (write-page (first notes)))
   
-  (-main (get-notes "notes"))
+  (get-notes)
+  (get-note "backlinks-test")
+  (-main (get-notes))
   
   (io/delete-file "note-2.html")
 

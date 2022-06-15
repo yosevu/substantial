@@ -4,14 +4,20 @@
             [markdown.core :refer [md-to-html-string-with-meta]]))
 
 (def site-url "https://notes.yosevu.com/")
+(def default-notes-path "notes")
 
 (defn slurp-dir [path]
   (map slurp (rest (file-seq (io/file path)))))
 
-(def backlink-match #"(.*)(\]\()([a-z0-9|-]+)(.*)")
+;; FIXME md to html not working
+;; (def backlink-match-1 #"(.*)(\]\()([a-z0-9|-]+)(.*)")
+(def backlink-match #"(\]\()([a-z0-9|-]+)")
+
+;; (defn backlink-replacement-1 [site-url]
+;;   (str "$1" "$2" site-url "$3" ".html" "$4"))
 
 (defn backlink-replacement [site-url]
-  (str "$1" "$2" site-url "$3" ".html" "$4"))
+  (str "$1" site-url "$2" ".html"))
 
 (defn add-backlink [backlink-text state]
   [(string/replace backlink-text backlink-match
@@ -30,13 +36,15 @@
   (reverse (sort-by #(get-in (:metadata %) [:date]) notes)))
 
 (defn into-map [notes-map note]
-  (assoc notes-map (keyword (first (:id (:metadata note)))) note))
+  (assoc notes-map (keyword (first (:slug (:metadata note)))) note))
 
-(defmacro get-notes [path]
-  (reduce into-map {} (sort-by-date (md->html (slurp-dir path)))))
+(defn get-notes
+  ([] (get-notes default-notes-path))
+  ([notes-path]
+   (reduce into-map {} (sort-by-date (md->html (slurp-dir notes-path))))))
 
-(defn -main []
-  (println "Called (-main)"))
+(defn get-note [slug]
+  ((keyword slug) (get-notes)))
 
 (comment
   (def backlink-text "abc[Today I learned](learning-journal)123")
@@ -45,16 +53,8 @@
                   (backlink-replacement site-url))
   ;; => "[Today I learned](https://notes.yosevu.com/learning-journal.html)"
 
-  ;; (md-to-html-string-with-meta "abc[Today I learned](/learning-journal)123" :custom-transformers [add-backlink])
   (md-to-html-string-with-meta
    backlink-text
    :replacement-transformers
-   [add-backlink])
-  
-  (md-to-html-with-backlinks (first (get-notes "notes")))
-  
-  ;; (defn capitalize [text state]
-  ;;   (println state)
-  ;;   [(.toUpperCase text) state])
-  ;; (md-to-html-string-with-meta "#foo" :custom-transformers [capitalize])
+   [add-backlink]) 
   )
