@@ -1,7 +1,8 @@
 (ns substantial.notes
   (:require [clojure.java.io :as io]
             [clojure.string :as string]
-            [markdown.core :refer [md-to-html-string-with-meta]]))
+            [markdown.core :refer [md-to-html-string-with-meta]]
+            [markdown.transformers :refer [transformer-vector]]))
 
 (def site-url "https://notes.yosevu.com/")
 (def default-notes-path "notes")
@@ -9,15 +10,10 @@
 (defn slurp-dir [path]
   (map slurp (rest (file-seq (io/file path)))))
 
-;; FIXME md to html not working
-;; (def backlink-match-1 #"(.*)(\]\()([a-z0-9|-]+)(.*)")
-(def backlink-match #"(\]\()([a-z0-9|-]+)")
-
-;; (defn backlink-replacement-1 [site-url]
-;;   (str "$1" "$2" site-url "$3" ".html" "$4"))
+(def backlink-match #"(.*)(\]\()([a-z0-9|-]+)(.*)")
 
 (defn backlink-replacement [site-url]
-  (str "$1" site-url "$2" ".html"))
+  (str "$1" "$2" site-url "$3" ".html" "$4"))
 
 (defn add-backlink [backlink-text state]
   [(string/replace backlink-text backlink-match
@@ -27,7 +23,7 @@
   (md-to-html-string-with-meta
     filestring
     :replacement-transformers
-    [add-backlink]))
+    (into [add-backlink] transformer-vector)))
 
 (defn md->html [filestrings]
   (map md-to-html-with-backlinks filestrings))
