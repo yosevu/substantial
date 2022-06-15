@@ -410,7 +410,7 @@ Regex patterns are supported with a special reader macro.
     (deftest maximum-value
       (is (= (maximum-value 1 8 3 4) 8)))
 
-`reduce` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.
+`reduce` is an essential [tool for thinking functionally](tools-for-thinking-functionally). It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.
 
 ## 39. Interleave two seqs
 
@@ -430,12 +430,12 @@ Regex patterns are supported with a special reader macro.
   (is (= (interleave-two-seqs [1 2 3 4] [5]) [1 5]))
   (is (= (interleave-two-seqs [30 20] [25 15]) [30 25 20 15])))
 ```
-`mapcat` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It concatenates the results applying a map function to a set of collections.
+`mapcat` is an essential [tool for thinking functionally](tools-for-thinking-functionally). It concatenates the results applying a map function to a set of collections.
 
 ## 40. Interpose a seq
 
 *<span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span>*
-[Today I learned](learning-journal.md) that nested `#()` are not allowed.
+[Today I learned](learning-journal) that nested `#()` are not allowed.
 ```clojure
 (defn interpose-a-seq
   "Write a function which separates the items of a sequence by an arbitrary value."
