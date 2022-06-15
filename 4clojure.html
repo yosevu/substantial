@@ -153,7 +153,7 @@
   &#91;&amp; vals&#93;
   &#40;reduce #&#40;if &#40;&gt; %1 %2&#41; %1 %2&#41; vals&#41;&#41;
 </code></pre></p><p><strong>Tests</strong></p><pre><code>&#40;deftest maximum-value
-  &#40;is &#40;= &#40;maximum-value 1 8 3 4&#41; 8&#41;&#41;&#41;</code></pre><p><code>reduce</code> is an essential <a href='tools-for-thinking-functionally.md'>tool for thinking functionally</a>. It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.</p><h2>39. Interleave two seqs</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-11 Sun]</span></span></em><pre><code class="clojure">&#40;defn interleave-two-seqs
+  &#40;is &#40;= &#40;maximum-value 1 8 3 4&#41; 8&#41;&#41;&#41;</code></pre><p><code>reduce</code> is an essential <a href='tools-for-thinking-functionally'>tool for thinking functionally</a>. It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.</p><h2>39. Interleave two seqs</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-11 Sun]</span></span></em><pre><code class="clojure">&#40;defn interleave-two-seqs
   &quot;Write a function which takes two sequences and returns the first item from each,
     then the second item from each, then the third, etc.&quot;
   &#91;coll-a coll-b&#93;
@@ -163,26 +163,34 @@
   &#40;is &#40;= &#40;interleave-two-seqs &#91;1 2&#93; &#91;3 4 5 6&#93;&#41; '&#40;1 3 2 4&#41;&#41;&#41;
   &#40;is &#40;= &#40;interleave-two-seqs &#91;1 2 3 4&#93; &#91;5&#93;&#41; &#91;1 5&#93;&#41;&#41;
   &#40;is &#40;= &#40;interleave-two-seqs &#91;30 20&#93; &#91;25 15&#93;&#41; &#91;30 25 20 15&#93;&#41;&#41;&#41;
-</code></pre></p><p><code>mapcat</code> is an essential <a href='tools-for-thinking-functionally.md'>tool for thinking functionally</a>. It concatenates the results applying a map function to a set of collections.</p><h2>40. Interpose a seq</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span></em></p><p><a href='learning-journal.md'>Today I learned</a> that nested <code>#&#40;&#41;</code> are not allowed.</p><pre><code>&#40;defn interpose-a-seq
+</code></pre></p><p><code>mapcat</code> is an essential <a href='tools-for-thinking-functionally'>tool for thinking functionally</a>. It concatenates the results applying a map function to a set of collections.</p><h2>40. Interpose a seq</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span></em> <a href='learning-journal'>Today I learned</a> that nested <code>#&#40;&#41;</code> are not allowed.<pre><code class="clojure">&#40;defn interpose-a-seq
   &quot;Write a function which separates the items of a sequence by an arbitrary value.&quot;
   &#91;sep coll&#93;
-  &#40;drop-last &#40;reduce #&#40;conj %1 %2 sep&#41; &#91;&#93; coll&#41;&#41;&#41;</code></pre><p><strong>Tests</strong></p><pre><code>&#40;deftest interpose-a-seq
+  &#40;drop-last &#40;reduce #&#40;conj %1 %2 sep&#41; &#91;&#93; coll&#41;&#41;&#41;
+</code></pre></p><p><strong>Tests</strong><pre><code class="clojure">&#40;deftest interpose-a-seq
   &#40;is &#40;= &#40;interpose-a-seq 0 &#91;1 2 3&#93;&#41; &#91;1 0 2 0 3&#93;&#41;&#41;
   &#40;is &#40;= &#40;apply str &#40;interpose-a-seq &quot;, &quot; &#91;&quot;one&quot; &quot;two&quot; &quot;three&quot;&#93;&#41;&#41; &quot;one, two, three&quot;&#41;&#41;
-  &#40;is &#40;= &#40;interpose-a-seq :z &#91;:a :b :c :d&#93;&#41; &#91;:a :z :b :z :c :z :d&#93;&#41;&#41;&#41;</code></pre><h2>41. Drop every nth item</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-13 Tue]</span></span></em></p><pre><code>&#40;defn drop-every-nth-item
+  &#40;is &#40;= &#40;interpose-a-seq :z &#91;:a :b :c :d&#93;&#41; &#91;:a :z :b :z :c :z :d&#93;&#41;&#41;&#41;
+</code></pre></p><h2>41. Drop every nth item</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-13 Tue]</span></span></em><pre><code class="clojure">&#40;defn drop-every-nth-item
   &quot;Write a function which drops every Nth item from a sequence.&quot;
   &#91;n coll&#93;
-  &#40;apply concat &#40;partition-all &#40;dec n&#41; n coll&#41;&#41;&#41;</code></pre><p><strong>Tests</strong></p><pre><code>&#40;deftest drop-every-nth-item
+  &#40;apply concat &#40;partition-all &#40;dec n&#41; n coll&#41;&#41;&#41;
+</code></pre></p><p><strong>Tests</strong><pre><code class="clojure">&#40;deftest drop-every-nth-item
   &#40;is &#40;= &#40;drop-every-nth-item 3 &#91;1 2 3 4 5 6 7 8&#93;&#41; &#91;1 2 4 5 7 8&#93;&#41;&#41;
   &#40;is &#40;= &#40;drop-every-nth-item 2 &#91;:a :b :c :d :e :f&#93;&#41; &#91;:a :c :e&#93;&#41;&#41;
-  &#40;is &#40;= &#40;drop-every-nth-item 4 &#91;1 2 3 4 5 6&#93;&#41; &#91;1 2 3 5 6&#93;&#41;&#41;&#41;</code></pre><p><code>partition</code> is an essential <a href='tools-for-thinking-functionally.md'>tool for thinking functionally</a>. It allows you to divide a list of items into a collection of smaller lists. The step option lets you skip items in the list that you do not want to include in the smaller lists.</p><p><strong>Note</strong>: I flipped the parameters in order to pass the data as the last argument. This simplifies function composition as described in <a href='http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda'>Introducing Ramda</a>.</p><h2>42. Factorial fun</h2><pre><code>&#40;defn factorial-fun
+  &#40;is &#40;= &#40;drop-every-nth-item 4 &#91;1 2 3 4 5 6&#93;&#41; &#91;1 2 3 5 6&#93;&#41;&#41;&#41;
+</code></pre></p><p><code>partition</code> is an essential <a href='tools-for-thinking-functionally.md'>tool for thinking functionally</a>. It allows you to divide a list of items into a collection of smaller lists. The step option lets you skip items in the list that you do not want to include in the smaller lists.</p><p><strong>Note</strong>: I flipped the parameters in order to pass the data as the last argument. This simplifies function composition as described in <a href='http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda'>Introducing Ramda</a>.</p><h2>42. Factorial fun</h2><pre><code class="clojure">&#40;defn factorial-fun
   &quot;Write a function which calculates factorials.&quot;
   &#91;n&#93;
-  &#40;reduce &#42; &#40;range 1 &#40;inc n&#41;&#41;&#41;&#41;</code></pre><p><strong>Short solution</strong></p><pre><code>#&#40;reduce &#42; &#40;range 1 &#40;inc %&#41;&#41;&#41;</code></pre><p><strong>Tests</strong></p><pre><code>&#40;deftest factorial-fun
+  &#40;reduce &#42; &#40;range 1 &#40;inc n&#41;&#41;&#41;&#41;
+</code></pre><p><strong>Short solution</strong><pre><code class="clojure">#&#40;reduce &#42; &#40;range 1 &#40;inc %&#41;&#41;&#41;
+</code></pre></p><p><strong>Tests</strong><pre><code class="clojure">&#40;deftest factorial-fun
   &#40;is &#40;= &#40;factorial-fun 1&#41; 1&#41;&#41;
   &#40;is &#40;= &#40;factorial-fun 3&#41; 6&#41;&#41;
   &#40;is &#40;= &#40;factorial-fun 5&#41; 120&#41;&#41;
-  &#40;is &#40;= &#40;factorial-fun 8&#41; 40320&#41;&#41;&#41;</code></pre><h2>43.</h2><p>Apply cf. unapply Packs vs. unpacks a value</p><p><a href="https://clojure.org/guides/learn/functions#_variadic_functions">https://clojure.org/guides/learn/functions#_variadic_functions</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max</a></p><h2>64. Intro to reduce</h2><pre><code>&#40;deftest intro-to-reduce
+  &#40;is &#40;= &#40;factorial-fun 8&#41; 40320&#41;&#41;&#41;
+</code></pre></p><h2>43.</h2><p>Apply cf. unapply Packs vs. unpacks a value</p><p><a href="https://clojure.org/guides/learn/functions#_variadic_functions">https://clojure.org/guides/learn/functions#_variadic_functions</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply</a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max</a></p><h2>64. Intro to reduce</h2><pre><code class="clojure">&#40;deftest intro-to-reduce
   &#40;is &#40;= 15 &#40;reduce + &#91;1 2 3 4 5&#93;&#41;&#41;&#41;
   &#40;is &#40;=  0 &#40;reduce + &#91;&#93;&#41;&#41;&#41;
-  &#40;is &#40;=  6 &#40;reduce + 1 &#91;2 3&#93;&#41;&#41;&#41;&#41;</code></pre></article></main><script src="js/highlight.min.js"></script><script>hljs.highlightAll()</script></body></html>
+  &#40;is &#40;=  6 &#40;reduce + 1 &#91;2 3&#93;&#41;&#41;&#41;&#41;
+</code></pre></article></main><script src="js/highlight.min.js"></script><script>hljs.highlightAll()</script></body></html>
