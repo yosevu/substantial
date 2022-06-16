@@ -1,6 +1,7 @@
 (ns substantial.core
   (:require [clojure.java.io :as io]
             [substantial.notes :refer [get-note get-notes]]
+            [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
             [templates.note :refer [note-page]]))
 
 (def dir "public")
@@ -25,18 +26,16 @@
 (defn -main
   "Write `notes` to files with `<template>-pages`."
   [notes]
+  (get-meta-dictionary)
   (let [write-results (write-pages (note-pages notes))]
-    (println (str "Wrote " (count write-results) " pages."))))
+    (println (str "Wrote " (count write-results) " pages.")))
+  (reset-meta-dictionary))
 
 (comment
-  (let [notes (get-notes "notes")] 
-    (println notes)
-    (write-page (first notes)))
-  
+  (write-page (first (get-notes "notes"))) 
   (get-notes)
-  ;; (get-note "backlinks-test")
-  (-main (get-notes))
-  
+  (get-note "backlinks-test")
+  (-main (get-notes)) 
+  (vec (set [[1] [1] [2] [3]]))
   (io/delete-file "note-2.html")
-
-  )
+)

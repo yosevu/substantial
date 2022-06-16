@@ -77,21 +77,33 @@ body {
   overflow-x: hidden;
 }
 
-main, nav {
+.container {
   max-width: var(--width-content);
-  margin: 1rem auto;
+  margin: auto;
+}
+
+main, nav {
+  margin: 1rem;
   padding: 1rem;
 }
 
 /* Note */
 article {
-  max-width: 40rem;
+  width: 40rem;
 }
 
 article div h2 {
-  margin: 2rem 0;
+  margin: 1rem 0;
 }
 
+aside {
+  width: 100%;
+  max-width: 25rem;
+  background-color: var(--tag-bg);
+  margin-left: 2rem;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+}
 /* Typography */
 code,
 samp {
@@ -264,8 +276,8 @@ img {
 @media screen and (min-width: 917px) {
   main {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
+    /* justify-content: space-between; */
+    align-items: flex-start;
   }
 }
 
@@ -274,3 +286,4 @@ img {
     max-width: 31rem;
   }
 }
+

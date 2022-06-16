@@ -1,8 +1,6 @@
-heading: Learning journal
-subhead:
+heading: Learning Journal
 date: 2020-09-22
 slug: learning-journal
-tags:
 
 # Learning Journal
 
@@ -62,7 +60,7 @@ This is a syntax compilation error due to a [list](https://clojuredocs.org/cloju
 
 *<span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span>*
 
-Nested `#()` are not allowed. I discovered this while solving 4Clojure problem 40, [Interpose a seq](4clojure-exercises.md).
+Nested `#()` are not allowed. I discovered this while solving 4Clojure problem 40, [Interpose a seq](/4clojure).
 
 **Legal**:
 

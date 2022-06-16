@@ -1,8 +1,6 @@
 heading: 4Clojure
-subhead:
 date: 2020-05-28
 slug: 4clojure
-tags:
 
 # 4Clojure Exercises
 
@@ -76,7 +74,7 @@ Sets are collections of unique values.
 (= #{:a :b :c :d}
     (clojure.set/union #{:a :b :c} #{:b :c :d}))
 ```
-&ldquo;In [set theory](set-theory.md), the union of a collection of sets is the set of all elements in the collection.&rdquo; - [Union (set theory), Wikipedia](https://en.wikipedia.org/wiki/Union_(set_theory))
+&ldquo;In [set theory](/set-theory.md), the union of a collection of sets is the set of all elements in the collection.&rdquo; - [Union (set theory), Wikipedia](https://en.wikipedia.org/wiki/Union_(set_theory))
 
 In the second example above, there are two sets in the collection.
 
@@ -128,7 +126,8 @@ All Clojure collections support sequencing. You can operate on sequences with fu
 
 ## 14. Intro to Functions
 
-[Clojure](private/clojure.md) has many different ways to create [functions](private/functions.md).
+Clojure has many different ways to create functions.
+
 ```clojure
 (= 8
     ((fn add-five [x] (+ x 5)) 3))
@@ -190,14 +189,14 @@ Write a function which doubles a number.
 (= '(6 7 8)
     (map #(+ % 5) '(1 2 3)))
 ```
-`map` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It takes two arguments: a function (f) and a sequence (s). Map returns a new sequence consisting of the result of applying f to each item of s. Do not confuse the map function with the map data structure.
+`map` is an essential [tool for thinking functionally](/functional-thinking). It takes two arguments: a function (f) and a sequence (s). Map returns a new sequence consisting of the result of applying f to each item of s. Do not confuse the map function with the map data structure.
 
 ## 18. Sequences: filter
 ```clojure
 (= '(6 7)
     (filter #(> % 5) '(3 4 5 6 7)))
 ```
-`filter` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It takes two arguments: a predicate function (f) and a sequence (s). Filter returns a new sequence consisting of all the items of s for which (f item) returns true.
+`filter` is an essential [tool for thinking functionally](/functional-thinking). It takes two arguments: a predicate function (f) and a sequence (s). Filter returns a new sequence consisting of all the items of s for which (f item) returns true.
 
 ## 19. Last element
 
@@ -410,7 +409,7 @@ Regex patterns are supported with a special reader macro.
     (deftest maximum-value
       (is (= (maximum-value 1 8 3 4) 8)))
 
-`reduce` is an essential [tool for thinking functionally](tools-for-thinking-functionally). It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.
+`reduce` is an essential [tool for thinking functionally](/functional-thinking). It has two arities. The first takes a function and a collection and the second takes a function, an initial value, and a collection. The function passed to reduce has to parameters, the result and the current item in the collection. If there is an initial value argument, it is passed as the result parameter. If not, the first item of the collection is passed by default.
 
 ## 39. Interleave two seqs
 
@@ -430,12 +429,12 @@ Regex patterns are supported with a special reader macro.
   (is (= (interleave-two-seqs [1 2 3 4] [5]) [1 5]))
   (is (= (interleave-two-seqs [30 20] [25 15]) [30 25 20 15])))
 ```
-`mapcat` is an essential [tool for thinking functionally](tools-for-thinking-functionally). It concatenates the results applying a map function to a set of collections.
+`mapcat` is an essential [tool for thinking functionally](/functional-thinking). It concatenates the results applying a map function to a set of collections.
 
 ## 40. Interpose a seq
 
 *<span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span>*
-[Today I learned](learning-journal) that nested `#()` are not allowed.
+[Today I learned](/learning-journal) that nested `#()` are not allowed.
 ```clojure
 (defn interpose-a-seq
   "Write a function which separates the items of a sequence by an arbitrary value."
@@ -465,7 +464,7 @@ Regex patterns are supported with a special reader macro.
   (is (= (drop-every-nth-item 2 [:a :b :c :d :e :f]) [:a :c :e]))
   (is (= (drop-every-nth-item 4 [1 2 3 4 5 6]) [1 2 3 5 6])))
 ```
-`partition` is an essential [tool for thinking functionally](tools-for-thinking-functionally.md). It allows you to divide a list of items into a collection of smaller lists. The step option lets you skip items in the list that you do not want to include in the smaller lists.
+`partition` is an essential [tool for thinking functionally](/functional-thinking). It allows you to divide a list of items into a collection of smaller lists. The step option lets you skip items in the list that you do not want to include in the smaller lists.
 
 **Note**: I flipped the parameters in order to pass the data as the last argument. This simplifies function composition as described in [Introducing Ramda](http://buzzdecafe.github.io/code/2014/05/16/introducing-ramda).
 

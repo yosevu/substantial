@@ -1,8 +1,6 @@
 heading: What brains are good for
-subhead:
 date: 2020-09-28
 slug: what-brains-are-good-for
-tags:
 
 # What brains are good for
 
