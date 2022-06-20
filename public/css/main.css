@@ -82,7 +82,7 @@ body {
   margin: auto;
 }
 
-main, nav {
+nav, article {
   margin: 1rem;
   padding: 1rem;
 }
@@ -99,9 +99,9 @@ article div h2 {
 aside {
   width: 100%;
   max-width: 25rem;
-  background-color: var(--tag-bg);
-  margin-left: 2rem;
+  margin: 2rem;
   padding: 1rem;
+  background-color: var(--tag-bg);
   border-radius: var(--border-radius);
 }
 /* Typography */
