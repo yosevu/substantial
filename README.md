@@ -103,4 +103,5 @@ git push origin `git subtree split --prefix public main`:gh-pages --force
 
 ### [Calva](https://calva.io/)
 
+- `Calva: Start a Project REPL and Connect (aka Jack-In)`
 - `Calva: Load/Evaluate Current File and its Requires/Dependencies`

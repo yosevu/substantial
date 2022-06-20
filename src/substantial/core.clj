@@ -26,7 +26,7 @@
 (defn -main
   "Build `notes` to files with `<template>-pages`."
   []
-  (println "Building site...")
+  (println "Building site.")
   (get-meta-dictionary)
   (let [write-results (write-pages (note-pages (get-notes)))]
     (println (str "Built " (count write-results) " pages.")))

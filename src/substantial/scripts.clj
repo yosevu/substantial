@@ -10,10 +10,12 @@
     (apply sh (split (str "git push origin " commit-sha ":gh-pages --force") #" "))))
   
 (defn publish [_]
-  (println "Publishing site...")
+  (println (:out (sh "clj" "-M:build")))
+  (println "Publishing site.")
   (let [{:keys [out err]} (git-push)]
     (when (seq out) (print out))
-    (when (seq err) (print err))))
+    (when (seq err) (print err)))
+  (println "Published site."))
 
 (comment
   )
