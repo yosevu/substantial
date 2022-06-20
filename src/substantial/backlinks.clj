@@ -31,14 +31,12 @@
    [I am a backlink](/i-am-a-backlink)
    [Backlink](https://<site-url>/i-am-a-backlink.html)"
   [site-url]
-  ;; (str "$1" "$2" "$3" site-url "$4" "$5" ".html" "$6"))
   (str "$1"      ; Preceding text up start of markdown link text ([) 
        "$2"      ; Link text
        "$3"      ; End of markdown link text (])
        site-url  ; Site url
        "$4"      ; Preceding forward-slash (/) for relative link
        "$5"      ; Relative link path
-       ".html"   ; File extension
        "$6"))    ; End of url ()) and following text
 
 (defn transform-backlink
