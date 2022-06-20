@@ -1,16 +1,16 @@
+
+
 # substantial
 
 > How can I be substantial if I do not cast a shadow? I must have a dark side also If I am to be whole.
 >
 > &mdash; Carl Jung
 
-A Markdown static site generator that supports backlink references.
+A minimal static site generator built with Clojure.
 
 - Transforms Markdown files to HTML.
-- Adds backlink references to markdown files.
-- Aggregates backlink references for markdown file.
-- Written in [Clojure](https://clojure.org/).
 - Uses [Hiccup](https://github.com/weavejester/hiccup) for HTML templating.
+- Aggregates backlinks.
 
 ### Example Sites
 
@@ -31,6 +31,19 @@ id: note-1
 date: 2019-12-01
 ```
 
+### Backlinks
+
+A backlink is a reference to another page on the site. It connects thoughts and enriches them by building an emergent context around them.
+
+> Often the context in which we are working suggests a multiplicity of links to other notes. This is especially the case when the card index is already voluminous. In such cases it is important to capture the connections radially, as it were, but at the same time also by right away recording back links in the slips that are being linked to. In this working procedure, the content that we take note of is usually also enriched.
+>
+> &mdash; Niklas Luhmann
+
+Example:
+
+```markdown
+[I am a backlink](/i-am-a-backlink)
+```
 ### Build Site
 
 ```
