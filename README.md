@@ -41,6 +41,12 @@ clj -M:build
 
 Create a [Github Pages](https://pages.github.com/) site to publish.
 
+Clojure:
+```
+clj -X:publish
+```
+
+Git:
 ```
 git push origin `git subtree split --prefix public main`:gh-pages --force
 ```
