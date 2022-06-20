@@ -24,18 +24,18 @@
   (map write-page pages))
 
 (defn -main
-  "Write `notes` to files with `<template>-pages`."
-  [notes]
+  "Build `notes` to files with `<template>-pages`."
+  []
+  (println "Building site...")
   (get-meta-dictionary)
-  (let [write-results (write-pages (note-pages notes))]
-    (println (str "Wrote " (count write-results) " pages.")))
+  (let [write-results (write-pages (note-pages (get-notes)))]
+    (println (str "Built " (count write-results) " pages.")))
   (reset-meta-dictionary))
 
 (comment
   (write-page (first (get-notes "notes"))) 
   (get-notes)
   (get-note "backlinks-test")
-  (-main (get-notes)) 
   (vec (set [[1] [1] [2] [3]]))
   (io/delete-file "note-2.html")
 )
