@@ -4,7 +4,17 @@
 >
 > &mdash; Carl Jung
 
-## Project structure
+A Markdown static site generator that supports backlink references.
+
+- Transforms Markdown files to HTML.
+- Adds backlink references to markdown files.
+- Aggregates backlink references for markdown file.
+- Written in [Clojure](https://clojure.org/).
+- Uses [Hiccup](https://github.com/weavejester/hiccup) for HTML templating.
+
+## Example Sites
+
+- https://notes.yosevu.com/
 
 ## Metadata
 
@@ -24,4 +34,47 @@ date: 2019-12-01
 
 Create a [Github Pages](https://pages.github.com/) site to publish.
 
-- `git subtree push -f --prefix public origin gh-pages`
+```
+git push origin `git subtree split --prefix public main`:gh-pages --force
+```
+
+## Local Development
+
+
+### Project Structure
+
+```
+.
+├── README.md
+├── deps.edn
+├── notes
+│   ├── index.md
+│   ├── note.md
+├── public
+│   ├── CNAME
+│   ├── css
+│   │   ├── a11y-dark.min.css
+│   │   └── main.css
+│   ├── note.html
+│   ├── index.html
+│   ├── js
+│   │   └── highlight.min.js
+├── src
+│   ├── substantial
+│   │   ├── backlinks.clj
+│   │   ├── core.clj
+│   │   ├── metadata.clj
+│   │   ├── notes.clj
+│   │   └── utilities.clj
+│   └── templates
+│       ├── note.clj
+│       └── partials.clj
+├── test
+│   ├── backlink-test.md
+│   └── substantial
+│       └── core_test.clj
+```
+
+### [Calva](https://calva.io/)
+
+- `Calva: Load/Evaluate Current File and its Requires/Dependencies`
