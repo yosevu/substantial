@@ -11,7 +11,7 @@
 
 ;; Unhandled clojure.lang.ExceptionInfo
 ;; Unexpected EOF while reading item 17 of list.
-;; {:type :reader-exception, :ex-kind :eof}</code></pre><h2>Nested shorthand anonymous functions are not allowed     :clojure:</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span></em></p><p>Nested <code>#&#40;&#41;</code> are not allowed. I discovered this while solving 4Clojure problem 40, <a href='https://notes.yosevu.com/4clojure.html'>Interpose a seq</a>.</p><p><strong>Legal</strong>:</p><pre><code>&#40;&#40;fn
+;; {:type :reader-exception, :ex-kind :eof}</code></pre><h2>Nested shorthand anonymous functions are not allowed     :clojure:</h2><p><em><span class="timestamp-wrapper"><span class="timestamp">[2020-10-12 Mon]</span></span></em></p><p>Nested <code>#&#40;&#41;</code> are not allowed. I discovered this while solving 4Clojure problem 40, <a href='https://notes.yosevu.com/4clojure'>Interpose a seq</a>.</p><p><strong>Legal</strong>:</p><pre><code>&#40;&#40;fn
   &#91;sep coll&#93;
   &#40;drop-last &#40;reduce #&#40;conj %1 %2 sep&#41; &#91;&#93; coll&#41;&#41;&#41; &quot;and&quot; &#91;1 2 3&#93;&#41;
 
