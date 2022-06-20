@@ -1,6 +1,6 @@
 heading: 4Clojure
 date: 2020-05-28
-slug: 4clojure
+id: 4clojure
 
 # 4Clojure Exercises
 

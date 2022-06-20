@@ -46,5 +46,4 @@
          body))
 
 (comment 
-  (seq [1])
   )

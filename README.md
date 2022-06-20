@@ -4,22 +4,24 @@
 >
 > &mdash; Carl Jung
 
-
 ## Project structure
 
 ## Metadata
 
 - `heading` (required): The main heading.
-- `subhead`: The secondary heading.
-- `slug` (required): The short name displayed in the url to link to the note.
+- `id` (required): The unique short name (slug) displayed in the url used to link to the note.
 - `date` (required): The publication date.
 - `tags`: A list of tags used to categorize the note.
 
 Example:
 ```markdown
 heading: This is Note 1
-subhead: This is the subheading for Note 1.
-slug: note-1
+id: note-1
 date: 2019-12-01
-tags: tag1 tag2
 ```
+
+## Publish
+
+Create a [Github Pages](https://pages.github.com/) site to publish.
+
+- `git subtree push -f --prefix public origin gh-pages`

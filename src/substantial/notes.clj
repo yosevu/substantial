@@ -15,8 +15,8 @@
 (defn- sort-by-date [notes]
   (reverse (sort-by #(get-in (:metadata %) [:date]) notes)))
 
-(defn- get-slug [metadata]
-  (keyword (first (:slug metadata))))
+(defn- get-id [metadata]
+  (keyword (first (:id metadata))))
 
 (defn md-to-html-with-backlinks
   [filestring]
@@ -30,9 +30,9 @@
    Create note map with metadata, html, and backlinks."
   [note-map filestring]
   (let [{:keys [metadata html]} (md-to-html-with-backlinks filestring)
-        slug (get-slug metadata)
+        id (get-id metadata)
         backlinks (collect-backlinks filestring)]
-    (assoc note-map slug {:metadata metadata
+    (assoc note-map id {:metadata metadata
                        :html html
                        :backlinks backlinks})))
 
@@ -49,8 +49,8 @@
 (defn get-note
   "(get-note string)
    Get note by id."
-  [slug]
-  ((keyword slug) (get-notes)))
+  [id]
+  ((keyword id) (get-notes)))
 
 (comment
   (sort-by-date (get-notes))

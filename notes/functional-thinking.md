@@ -1,6 +1,6 @@
 heading: Functional Thinking
 date: 2020-10-13
-slug: functional-thinking
+id: functional-thinking
 
 # Functional Thinking
 

@@ -55,26 +55,26 @@
   (re-seq (re-pattern (str "\\[.*?\\]\\(/[a-z0-9|-]+\\)"))
           filestring))
 
-(defn- get-backlink-slug
-  "(get-backlink-slug string)"
+(defn- get-backlink-id
+  "(get-backlink-id string)"
   [backlink]
   (re-find #"(?<=\/).+?(?=\))" backlink))
 
 (defn- get-backlink-heading
-  [slug]
-  (:heading ((keyword slug) (get-meta-dictionary))))
+  [id]
+  (:heading ((keyword id) (get-meta-dictionary))))
 
-(defn get-backlink-heading-and-slug
+(defn get-backlink-heading-and-id
   [backlink]
-  (let [slug (get-backlink-slug backlink)
-        heading (get-backlink-heading slug)]
-    [slug heading]))
+  (let [id (get-backlink-id backlink)
+        heading (get-backlink-heading id)]
+    [id heading]))
 
 (defn collect-backlinks
   "(collect-backlinks string)
    Collect backlinks for note."
   [filestring]
-  (vec (set (map get-backlink-heading-and-slug
+  (vec (set (map get-backlink-heading-and-id
                       (get-backlinks filestring)))))
 
 (defn add-backlinks

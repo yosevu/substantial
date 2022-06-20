@@ -21,7 +21,7 @@
   ([filepath]
    (->> (slurp-dir filepath)
         (map (fn [filestring] (parse-metadata filestring)))
-        (reduce (fn [my-map meta] (assoc my-map (keyword (:slug meta)) meta)) {})
+        (reduce (fn [my-map meta] (assoc my-map (keyword (:id meta)) meta)) {})
         (swap! meta-dictionary (into {})))))
 
 ;; FIXME dynamic filepath

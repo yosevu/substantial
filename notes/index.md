@@ -1,6 +1,6 @@
 heading: Index 
 date: 2020-09-25
-slug: index
+id: index
 
 - [4Clojure](/4clojure)
 - [Learning Journal](/learning-journal)

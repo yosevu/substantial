@@ -1,8 +1,6 @@
 heading: Backlink Test
-subhead:
 date: 2020-05-28
-slug: backlink-test
-tags
+id: backlink-test
 
 ## 40. Interpose a seq
 
