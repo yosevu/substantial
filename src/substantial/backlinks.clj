@@ -60,9 +60,12 @@
 
 (defn- get-backlink-heading
   [id]
-  (:heading ((keyword id) (get-meta-dictionary))))
+  (let [key ((keyword id) (get-meta-dictionary))]
+    (if (nil? key)
+      (throw (Exception. (str "Error: " id ".md does not exist.")))
+      (:heading key))))
 
-(defn get-backlink-heading-and-id
+(defn get-backlink-id-and-heading
   [backlink]
   (let [id (get-backlink-id backlink)
         heading (get-backlink-heading id)]
@@ -72,8 +75,8 @@
   "(collect-backlinks string)
    Collect backlinks for note."
   [filestring]
-  (vec (set (map get-backlink-heading-and-id
-                      (get-backlinks filestring)))))
+  (vec (set (map get-backlink-id-and-heading
+                 (get-backlinks filestring)))))
 
 (defn add-backlinks
   [text state]

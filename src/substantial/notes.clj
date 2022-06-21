@@ -23,7 +23,8 @@
   (md-to-html-string-with-meta
    filestring
    :replacement-transformers
-   (into [add-backlinks] transformer-vector)))
+   (into [add-backlinks] transformer-vector)
+   :footnotes? true))
 
 (defn create-note
   "(create-note map string)

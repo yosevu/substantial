@@ -33,7 +33,7 @@
   [content blinks]
   [:body
    [:div.container
-    [:nav [:a {:href (str site-url "/index.html")} "Index"]]
+    [:nav [:a {:href (str site-url "/")} "Index"]]
     [:main
      [:article content]
      (when (seq blinks) (backlinks blinks))]
