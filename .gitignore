@@ -4,6 +4,7 @@
 .DS_Store
 .lsp
 .nrepl-port
+target
 todo.txt
 done.txt
 drafts

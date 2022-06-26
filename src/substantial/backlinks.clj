@@ -80,7 +80,7 @@
 
 (defn add-backlinks
   [text state]
-  (let [line-with-backlinks (transform-backlink text)] 
+  (let [line-with-backlinks (transform-backlink text)]
     [line-with-backlinks state]))
 
 (comment

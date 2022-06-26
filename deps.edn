@@ -1,6 +1,13 @@
-{:paths ["src" "test"]
- :deps {markdown-clj/markdown-clj {:mvn/version "1.11.1"}
-        hiccup/hiccup {:mvn/version "2.0.0-alpha2"}}
- :aliases {:build {:main-opts ["-m" "substantial.core"]}
-           :publish {:exec-fn substantial.scripts/publish}
-           :test  {:exec-fn substantial.core-test/run}}}
+{:paths ["src" "test" "scripts"]
+
+ :deps
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  com.github.clj-easy/graal-build-time {:mvn/version "0.1.4"}
+  markdown-clj/markdown-clj {:mvn/version "1.11.1"}
+  hiccup/hiccup {:mvn/version "2.0.0-alpha2"}}
+
+ :aliases
+ {:build {:deps {io.github.clojure/tools.build {:git/tag "v0.8.2" :git/sha "ba1a2bf"}}
+          :ns-default build}
+  :publish {:exec-fn scripts.publish/run}
+  :test  {:exec-fn substantial.core-test/run}}}

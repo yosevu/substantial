@@ -1,4 +1,5 @@
 (ns substantial.core
+  (:gen-class)
   (:require [clojure.java.io :as io]
             [substantial.notes :refer [get-note get-notes]]
             [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
@@ -33,9 +34,8 @@
   (reset-meta-dictionary))
 
 (comment
-  (write-page (first (get-notes "notes"))) 
+  (write-page (first (get-notes "notes")))
   (get-notes)
   (get-note "backlinks-test")
   (vec (set [[1] [1] [2] [3]]))
-  (io/delete-file "note-2.html")
-)
+  (io/delete-file "note-2.html"))
