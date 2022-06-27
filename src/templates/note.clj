@@ -1,9 +1,9 @@
 (ns templates.note
-  (:require [templates.partials :refer [page head body]]))
+  (:require [templates.partials :refer [create-page create-head create-body]]))
 
-(defn note-page
+(defn create-note-page
   "Create a page for a note."
-  [{:keys [metadata html backlinks]}]
-  (page
-   (head {:title "Yosevu's notes" :desc "Yosevu's notes."})
-   (body html backlinks)))
+  [config {:keys [metadata html backlinks]}]
+  (create-page
+   (create-head config)
+   (create-body config [html backlinks])))

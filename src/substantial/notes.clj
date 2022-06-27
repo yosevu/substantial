@@ -8,7 +8,7 @@
    [markdown.core :refer [md-to-html-string-with-meta]]
    [markdown.transformers :refer [transformer-vector]]
    [substantial.backlinks :refer [add-backlinks collect-backlinks]]
-   [substantial.utilities :refer [slurp-dir]]))
+   [substantial.utilities :refer [get-files]]))
 
 (def default-notes-path "notes")
 
@@ -45,7 +45,7 @@
   ([notes-path]
    (reduce create-note
            {}
-           (slurp-dir notes-path))))
+           (get-files notes-path))))
 
 (defn get-note
   "(get-note string)

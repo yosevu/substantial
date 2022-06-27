@@ -2,40 +2,38 @@
   (:require [clojure.java.io :as io]
             [substantial.notes :refer [get-note get-notes]]
             [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
-            [templates.note :refer [note-page]]))
+            [substantial.utilities :refer [get-config]]
+            [templates.note :refer [create-note-page]]))
 
 (def dir "public")
 (def ext "html")
 
-(defn note-pages
+(defn create-note-pages
   "Create note pages with `notes` and `<template>-page`."
-  [notes]
+  [config notes]
   (for [[page-name note] notes]
-    [page-name (note-page note)]))
-
-(defn write-page
-  "Write `page-name` and `content` to `dir`."
-  [[page-name content]]
-  (spit (str dir "/" (name page-name) "." ext) content))
+    [page-name (create-note-page config note)]))
 
 (defn write-pages
-  "Write `pages` to files with `write-page`."
+  "Write `pages` to files with."
   [pages]
-  (map write-page pages))
+  (map (fn [[page-name content]] (spit (str dir "/" (name page-name) "." ext) content))
+       pages))
 
 (defn -main
   "Build `notes` to files with `<template>-pages`."
   []
   (println "Building site.")
   (get-meta-dictionary)
-  (let [write-results (write-pages (note-pages (get-notes)))]
-    (println (str "Built " (count write-results) " pages.")))
+  (let [config (get-config)
+        notes (get-notes)
+        note-pages (create-note-pages config notes)
+        results (write-pages note-pages)]
+    (println (str "Built " (count results) " pages.")))
   (reset-meta-dictionary))
 
 (comment
-  (write-page (first (get-notes "notes"))) 
   (get-notes)
   (get-note "backlinks-test")
   (vec (set [[1] [1] [2] [3]]))
-  (io/delete-file "note-2.html")
-)
+  (io/delete-file "note-2.html"))

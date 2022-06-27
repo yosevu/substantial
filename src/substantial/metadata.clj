@@ -1,7 +1,7 @@
 (ns substantial.metadata
   (:require
    [clojure.string :as string]
-   [substantial.utilities :refer [slurp-dir]]))
+   [substantial.utilities :refer [get-files]]))
 
 (def default-notes-path "notes")
 
@@ -19,7 +19,7 @@
 (defn set-meta-dictionary
   ([] (set-meta-dictionary default-notes-path))
   ([filepath]
-   (->> (slurp-dir filepath)
+   (->> (get-files filepath)
         (map (fn [filestring] (parse-metadata filestring)))
         (reduce (fn [my-map meta] (assoc my-map (keyword (:id meta)) meta)) {})
         (swap! meta-dictionary (into {})))))

@@ -18,6 +18,19 @@ A minimal static site generator built with Clojure.
 
 ## Usage
 
+### Site Config
+
+Configure the site in `config.edn`.
+
+Example:
+
+```clojure
+{:title "My notes"
+ :author "My name"
+ :desc "These are my notes."
+ :site-url "https://myname.com"}
+```
+
 ### Metadata
 
 - `heading` (required): The main heading.
