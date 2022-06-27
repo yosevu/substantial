@@ -1,5 +1,3 @@
-
-
 # substantial
 
 > How can I be substantial if I do not cast a shadow? I must have a dark side also If I am to be whole.
@@ -14,9 +12,37 @@ A minimal static site generator built with Clojure.
 
 ### Example Sites
 
-- https://notes.yosevu.com/
+- https://yosevu.github.io/substantial
+- https://notes.yosevu.com
 
 ## Usage
+
+### Clone Template
+
+```
+git clone git@github.com:yosevu/substantial.git path/to/my-site
+```
+
+### Build Site
+
+```
+clj -M:build
+```
+
+### Publish Site
+
+- Create a [Github Pages](https://pages.github.com/) site to publish
+- Add a `CNAME` to the `public` directory.
+
+Clojure:
+```
+clj -X:publish
+```
+
+Git:
+```
+git push origin `git subtree split --prefix public main`:gh-pages --force
+```
 
 ### Site Config
 
@@ -38,7 +64,7 @@ Example:
 - `date` (required): The publication date.
 
 Example:
-```markdown
+```yaml
 heading: This is Note 1
 id: note-1
 date: 2019-12-01
@@ -57,28 +83,8 @@ Example:
 ```markdown
 [I am a backlink](/i-am-a-backlink)
 ```
-### Build Site
 
-```
-clj -M:build
-```
-
-### Publish Site
-
-Create a [Github Pages](https://pages.github.com/) site to publish.
-
-Clojure:
-```
-clj -X:publish
-```
-
-Git:
-```
-git push origin `git subtree split --prefix public main`:gh-pages --force
-```
-
-## Local Development
-
+## Local Development 
 
 ### Project Structure
 
@@ -114,7 +120,12 @@ git push origin `git subtree split --prefix public main`:gh-pages --force
 │       └── core_test.clj
 ```
 
-### [Calva](https://calva.io/)
+### [Calva](https://calva.io/) (VS Code)
 
 - `Calva: Start a Project REPL and Connect (aka Jack-In)`
 - `Calva: Load/Evaluate Current File and its Requires/Dependencies`
+
+### [CIDER](https://cider.mx/) (Emacs)
+
+- `cider-jack-in (cider-jack-in-clj`
+- `cider-ns-refresh`
