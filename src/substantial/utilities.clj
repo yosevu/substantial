@@ -19,8 +19,10 @@
   [path]
   (map get-file (->> path io/file file-seq rest)))
 
-(defn get-config []
-  (edn/read-string (slurp "config.edn")))
+(defn get-config
+  "Get config object: `(get-config)`
+   Get config entry: `(get-config :site-url)`"
+  ([] (edn/read-string (slurp "config.edn")))
+  ([entry-key] (entry-key (get-config))))
 
-(comment
-  (get-files "notes"))
+(comment)

@@ -4,9 +4,10 @@
    `add-backlinks`"
   (:require
    [clojure.string :as string]
-   [substantial.metadata :refer [get-meta-dictionary]]))
+   [substantial.metadata :refer [get-meta-dictionary]]
+   [substantial.utilities :refer [get-config]]))
 
-(def site-url "https://notes.yosevu.com")
+(def site-url (get-config :site-url))
 
 (def backlink-match
   "Matches a relative backlink.
@@ -80,9 +81,8 @@
 
 (defn add-backlinks
   [text state]
-  (let [line-with-backlinks (transform-backlink text)] 
+  (let [line-with-backlinks (transform-backlink text)]
     [line-with-backlinks state]))
 
 (comment
-  ;; Base lines to take on config.edn lines 
-  )
+  site-url)

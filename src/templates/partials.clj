@@ -2,8 +2,6 @@
   (:require [hiccup.page :refer [html5]]
             [hiccup.element :refer [link-to]]))
 
-;; (def site-url "https://notes.yosevu.com")
-
 (defn create-head [{:keys [title author desc]}]
   [:head
    [:meta {:charset "UTF-8"}]

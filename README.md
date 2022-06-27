@@ -65,9 +65,9 @@ Example:
 
 Example:
 ```yaml
-heading: This is Note 1
-id: note-1
-date: 2019-12-01
+heading: My Note
+date: 2022-06-25
+id: my-note
 ```
 
 ### Backlinks
