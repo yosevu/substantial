@@ -49,7 +49,6 @@
   /* --tag-bg: #eef; */
 }
 
-/* Dark Mode Variables */
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary: #add8e6;
@@ -64,8 +63,6 @@
     --tag-bg: #555;
   }
 }
-
-/* Layout */
 
 body {
   background: var(--color-bg);
@@ -82,29 +79,22 @@ body {
   margin: auto;
 }
 
-nav, article {
-  margin: 1rem;
+nav, article, aside {
   padding: 1rem;
 }
 
-/* Note */
-article {
-  width: 40rem;
-}
-
-article div h2 {
-  margin: 1rem 0;
+nav, article {
+  margin: 1rem;
+  max-width: 25rem;
 }
 
 aside {
-  width: 100%;
-  max-width: 25rem;
+  max-width: 20rem;
   margin: 2rem;
-  padding: 1rem;
   background-color: var(--tag-bg);
   border-radius: var(--border-radius);
 }
-/* Typography */
+
 code,
 samp {
   background-color: var(--color-primary-accent);
@@ -187,8 +177,6 @@ a:hover {
   text-decoration: none;
 }
 
-/* Images */
-
 figure {
   margin: 0;
   padding: 0;
@@ -202,7 +190,6 @@ figure figcaption {
   color: var(--color-text-secondary);
 }
 
-/* Tables */
 table {
   border: 1px solid var(--color-bg-secondary);
   border-radius: var(--border-radius);
@@ -270,20 +257,30 @@ li > p {
 }
 
 img {
-  max-width: 21rem;
+  max-width: 20rem;
 }
 
 @media screen and (min-width: 917px) {
   main {
     display: flex;
-    /* justify-content: space-between; */
     align-items: flex-start;
+  }
+
+  nav, article, aside {
+    width: 100%;
+  }
+
+  aside {
+    min-width: 15rem;
   }
 }
 
 @media screen and (min-width: 560px) {
+  nav, article {
+    max-width: 40rem;
+  }
+
   img {
-    max-width: 31rem;
+    max-width: 40rem;
   }
 }
-
