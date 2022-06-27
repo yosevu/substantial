@@ -34,8 +34,8 @@
         id (get-id metadata)
         backlinks (collect-backlinks filestring)]
     (assoc note-map id {:metadata metadata
-                       :html html
-                       :backlinks backlinks})))
+                        :html html
+                        :backlinks backlinks})))
 
 (defn get-notes
   "(get-notes)
@@ -54,6 +54,6 @@
   ((keyword id) (get-notes)))
 
 (comment
-  (sort-by-date (get-notes))
+  (sort-by-date (get-notes)))
 
-  )
+  

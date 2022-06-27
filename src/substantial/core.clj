@@ -33,6 +33,7 @@
   (reset-meta-dictionary))
 
 (comment
+  (-main)
   (get-notes)
   (get-note "backlinks-test")
   (vec (set [[1] [1] [2] [3]]))

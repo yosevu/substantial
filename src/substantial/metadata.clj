@@ -11,7 +11,9 @@
   (let [parsed-line (string/split line #":")]
     [(keyword (first parsed-line)) (string/trim (second parsed-line))]))
 
-(defn parse-metadata [filestring]
+(defn parse-metadata
+  ""
+  [filestring]
   (->> (take 3 (string/split filestring #"\n"))
        (map (fn [line] (parse-metadata-line line)))
        (into {})))
@@ -34,5 +36,5 @@
 (comment
   (get-meta-dictionary)
   @meta-dictionary
-  (reset-meta-dictionary)
-  )
+  (reset-meta-dictionary))
+  
