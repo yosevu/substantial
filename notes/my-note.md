@@ -4,4 +4,6 @@ id: my-note
 
 # My Note
 
+![A kitten](https://placekitten.com/600/400 "A kitten")
+
 This is my Markdown note rendered as HTML. [Another note](/another-note) is a backlink to another note.
