@@ -1,6 +1,8 @@
 {:paths ["src" "test"]
  :deps {markdown-clj/markdown-clj {:mvn/version "1.11.1"}
-        hiccup/hiccup {:mvn/version "2.0.0-alpha2"}}
- :aliases {:build {:main-opts ["-m" "substantial.core"]}
-           :publish {:exec-fn substantial.scripts/publish}
-           :test  {:exec-fn substantial.core-test/run}}}
+        hiccup/hiccup             {:mvn/version "2.0.0-alpha2"}}
+ :aliases {:build     {:main-opts ["-m" "substantial.core"]}
+           :publish   {:exec-fn substantial.scripts/publish}
+           :test      {:exec-fn substantial.core-test/run}
+           :init      {:exec-fn substantial.scripts/init}
+           :upgrade    {:exec-fn substantial.scripts/upgrade}}}

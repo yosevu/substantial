@@ -17,5 +17,26 @@
     (when (seq err) (print err)))
   (println "Published site."))
 
-(comment
-  )
+(defn init
+  "Initializes substantial notes with custom configuration.
+
+  - Creates custom config
+  - Creates custom README"
+  [_]
+  (println "Initializing notes."))
+
+(defn upgrade
+  "Upgrades substantial.
+
+  git sparse-checkout
+  https://github.blog/2020-01-17-bring-your-monorepo-down-to-size-with-sparse-checkout/
+
+  - Updtes deps.edn
+  - Updates src
+  - Updates test
+  - Updates public/css
+  - Updates public/js"
+  [_]
+  (println "Upgrading substantial."))
+
+(comment)
