@@ -3,7 +3,8 @@
             [substantial.notes :refer [get-note get-notes]]
             [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
             [substantial.utilities :refer [get-config]]
-            [templates.note :refer [create-note-page]]))
+            [templates.note :refer [create-note-page]])
+  (:gen-class))
 
 (def dir "public")
 (def ext "html")

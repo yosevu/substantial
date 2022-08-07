@@ -1,8 +1,12 @@
 {:paths ["src" "test"]
  :deps {markdown-clj/markdown-clj {:mvn/version "1.11.1"}
         hiccup/hiccup             {:mvn/version "2.0.0-alpha2"}}
- :aliases {:build     {:main-opts ["-m" "substantial.core"]}
+ :aliases {:build-site     {:main-opts ["-m" "substantial.core"]}
+           :build {:deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
+                   :ns-default build}
            :publish   {:exec-fn substantial.scripts/publish}
            :test      {:exec-fn substantial.core-test/run}
+           ;; :create
            :init      {:exec-fn substantial.scripts/init}
+           ;; why doesn't :update work
            :upgrade    {:exec-fn substantial.scripts/upgrade}}}
