@@ -7,13 +7,13 @@
 (def basis (b/create-basis {:project "deps.edn"}))
 (def version "0.0.1")
 (def app-name "substantial")
-(def uber-file-name (format "%s/%s-%s-standalone.jar" build-folder app-name version)) ; path for result uber file
+(def uber-file-name (format "%s/%s-%s.jar" build-folder app-name version)) ; path for result uber file
 
 (defn clean [_]
   (b/delete {:path "target"})
   (println (format "Build folder \"%s\" removed" build-folder)))
 
-(defn uber [_]
+(defn uberjar [_]
   (clean nil)
 
   (b/copy-dir {:src-dirs   ["resources"]         ; copy resources
@@ -28,4 +28,4 @@
            :basis     basis
            :main      'substantial.core})                ; here we specify the entry point for uberjar
 
-  (println (format "Uber file created: \"%s\"" uber-file-name)))
+  (println (format "Uberjar created: \"%s\"" uber-file-name)))

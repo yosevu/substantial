@@ -16,7 +16,7 @@
            :content ""}]
    [:title title]
    [:link {:href "css/main.css"      :rel "stylesheet"}]
-   [:link {:href "css/a11y-dark.min.css" :rel "stylesheet"}]])
+   [:link {:href "css/highlight.css" :rel "stylesheet"}]])
 
 (defn create-backlinks
   [site-url blinks]
@@ -35,7 +35,7 @@
     [:main
      [:article content]
      (when (seq blinks) (create-backlinks site-url blinks))]
-    [:script {:src "js/highlight.min.js"}]
+    [:script {:src "js/highlight.js"}]
     [:script "hljs.highlightAll()"]]])
 
 (defn create-page [head body]
@@ -43,5 +43,4 @@
          head
          body))
 
-(comment) 
-  
+(comment)

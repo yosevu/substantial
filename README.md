@@ -17,16 +17,15 @@ A minimal static site generator built with Clojure.
 
 ## Usage
 
-### Clone Template
+### Init Site
 
-```
-git clone git@github.com:yosevu/substantial.git path/to/my-site
+``` sh
+./substantial init
 ```
 
 ### Build Site
-
-```
-clj -M:build
+``` sh
+./substantial build
 ```
 
 ### Publish Site
@@ -51,10 +50,10 @@ Configure the site in `config.edn`.
 Example:
 
 ```clojure
-{:title "My notes"
- :author "My name"
- :desc "These are my notes."
- :site-url "https://myname.com"}
+{:title       "My notes"
+ :author      "My name"
+ :description "These are my notes."
+ :site-url    "https://notes.myname.com"}
 ```
 
 ### Metadata
@@ -129,3 +128,16 @@ Example:
 
 - `cider-jack-in (cider-jack-in-clj`
 - `cider-ns-refresh`
+
+## Create binary
+
+### Build uberjar
+
+``` sh
+clj -T:build uberjar
+```
+### Generate binary
+
+``` sh
+native-image -jar target/substantial-UBERJAR_VERSION.jar -H:Name=BINARY_NAME
+```

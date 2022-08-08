@@ -1,4 +1,4 @@
 {:title "substantial"
  :author "Yosevu Kilonzo"
- :desc "A minimal static site generator built with Clojure."
+ :description "A minimal static site generator built with Clojure."
  :site-url "https://yosevu.github.io/substantial"}

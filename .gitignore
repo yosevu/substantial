@@ -4,6 +4,12 @@
 .DS_Store
 .lsp
 .nrepl-port
+
+# uberjar build target
 target
-todo*
-drafts
+
+# example site directory
+example-site
+
+# graalvm generated binary
+substantial
