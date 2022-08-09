@@ -29,21 +29,28 @@
    :author "my author"
    :description "my description"})
 
+(defn create-site
+  [site-name]
+  (.mkdir (file site-name)))
+
 (defn create-config
   [site-path]
   (.mkdir (file site-path))
-  (write-file (str site-path "/config.edn") default-config))
+  (spit (str site-path "/config.edn") default-config))
+
+  ;; (write-file (str site-path "config.edn") default-config))
 
 (defn create-example-notes
   [site-path]
-  (let [example-index "notes/index.md"
-        example-note-1 "notes/my-note.md"
-        example-note-2 "notes/another-note.md"]
+  (let [example-index "/notes/index.md"
+        example-note-1 "/notes/my-note.md"
+        example-note-2 "/notes/another-note.md"]
 
     (make-parents (str site-path example-index))
     (make-parents (str site-path example-note-1))
     (make-parents (str site-path example-note-2))
 
+    ;; Isn't copying files correctly
     (copy (file example-index) (file (str site-path example-index)))
     (copy (file example-note-1) (file (str site-path example-note-1)))
     (copy (file example-note-2) (file (str site-path example-note-2)))))
@@ -53,9 +60,9 @@
   - css
   - js"
   [site-path]
-  (let [main-css-path "resources/css/main.css"
-        highlight-css-path "resources/css/highlight.css"
-        highlight-js-path "resources/js/highlight.js"]
+  (let [main-css-path "/resources/css/main.css"
+        highlight-css-path "/resources/css/highlight.css"
+        highlight-js-path "/resources/js/highlight.js"]
 
     (make-parents (str site-path main-css-path))
     (make-parents (str site-path highlight-css-path))
@@ -73,6 +80,6 @@
 
 (comment
   (write-file "example-notes/config.edn" "{}")
-  (create-config "example-site/")
-  (create-resources "example-site/")
+  (create-config "example-site")
+  (create-resources "example-site")
   (create-example-notes "example-site"))

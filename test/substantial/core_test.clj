@@ -5,7 +5,7 @@
   (is (= 5 (+ 2 2)))
   (is (= 7 (+ 3 4))))
 
-(defn run [_]
+(defn unit [_]
   (println "Running tests...")
   (addition))
 

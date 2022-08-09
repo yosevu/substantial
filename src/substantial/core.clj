@@ -3,7 +3,7 @@
             [clojure.java.io :as io]
             [substantial.notes :refer [get-note get-notes]]
             [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
-            [substantial.utilities :refer [create-config create-resources create-example-notes get-config]]
+            [substantial.utilities :refer [create-site create-config create-resources create-example-notes get-config]]
             [templates.note :refer [create-note-page]])
   (:gen-class))
 
@@ -27,8 +27,8 @@
   [args]
   (keyword (first args)))
 
-(defn build-site
-  []
+(defn build
+  [opts]
   (println "Building site.")
   (get-meta-dictionary)
   (let [config (get-config)
@@ -36,39 +36,38 @@
         note-pages (create-note-pages config notes)
         results (write-pages site-path note-pages)]
     (println (str "Built " (count results) " pages."))
+    (println "Done.")
     (reset-meta-dictionary)))
 
-(defn init-site
-  "Initializes substantial notes with custom configuration.
+(defn create
+  "Creates a site with custom configuration.
 
   - Creates config.edn
   - Creates resources
   - Creates example notes
-  - Creates custom README"
-  []
-  (println "Initializing site.")
-  (create-config site-path)
-  (create-resources site-path)
-  (create-example-notes site-path)
-  (build-site))
+  - Creates custom README
 
-(defn -main
-  "Build `notes` to files with `<template>-pages`."
-  [& args]
-  (let [option (parse-args args)]
-    (println args)
-    (case option
-      (:build nil) (build-site)
-      :init (init-site)
-      :help "help"
-      (println (str "Invalid option " (print-str option))))))
+  Example: clj -Tsub :name example-site"
+  [opts]
+  (println "Creating site.")
+  (create-site (str (:name opts)))
+  (create-config (str (:name opts)))
+  (create-resources (str (:name opts)))
+  (create-example-notes (str (:name opts))))
+
+;; (defn -main
+;;   "Build `notes` to files with `<template>-pages`."
+;;   [& args]
+;;   (let [option (parse-args args)]
+;;     (println args)
+;;     (case option
+;;       (:build nil) (build)
+;;       :init (create)
+;;       :help "help"
+;;       (println (str "Invalid option " (print-str option))))))
 
 (comment
-  (-main)
-  (-main "build")
-  (-main "init")
-  (-main "help")
-  (-main "unknown")
+  (create-site "example site")
   (get-notes)
   (get-note "backlinks-test")
   (vec (set [[1] [1] [2] [3]]))
