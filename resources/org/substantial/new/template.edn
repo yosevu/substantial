@@ -1,0 +1,4 @@
+{:transform
+ [["../../../../src/substantial/new/substantial/static" "static" :raw]
+  ["../../../../src/substantial/new/substantial/content" "content" :raw]
+  ["../../../../src/substantial/new/substantial/src" "src" :raw]]}

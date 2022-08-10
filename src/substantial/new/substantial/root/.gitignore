@@ -1,0 +1,15 @@
+.calva
+.clj-kondo
+.cpcache
+.DS_Store
+.lsp
+.nrepl-port
+
+# uberjar build target
+target
+
+# example site directory
+example-site
+
+# graalvm generated binary
+substantial
