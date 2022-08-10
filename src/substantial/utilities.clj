@@ -27,7 +27,8 @@
 (def default-config
   {:title "my title"
    :author "my author"
-   :description "my description"})
+   :description "my description"
+   :site-url ""})
 
 (defn create-site
   [site-name]
@@ -75,11 +76,18 @@
 (defn get-config
   "Get config object: `(get-config)`
    Get config entry: `(get-config :site-url)`"
-  ([] (edn/read-string (slurp "config.edn")))
-  ([entry-key] (entry-key (get-config))))
+  ([]
+   (if (.exists (file "config.edn"))
+     (edn/read-string (slurp "config.edn"))
+     (do (spit "config.edn" default-config)
+         (edn/read-string (slurp "config.edn")))))
+  ([entry-key]
+   (entry-key (get-config))))
 
 (comment
   (write-file "example-notes/config.edn" "{}")
+  (get-config)
+  (create-site "example-site")
   (create-config "example-site")
   (create-resources "example-site")
   (create-example-notes "example-site"))

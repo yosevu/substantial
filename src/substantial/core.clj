@@ -67,7 +67,7 @@
 ;;       (println (str "Invalid option " (print-str option))))))
 
 (comment
-  (create-site "example site")
+  (create :name "example-site")
   (get-notes)
   (get-note "backlinks-test")
   (vec (set [[1] [1] [2] [3]]))
