@@ -1,4 +1,4 @@
 {:transform
- [["../../../../template/root" "" :raw]
-  ["../../../../template/static" "static" :raw]
-  ["../../../../template/content" "content" :raw]]}
+ [["root" "" :raw]
+  ["static" "static" :raw]
+  ["content" "content" :raw]]}
