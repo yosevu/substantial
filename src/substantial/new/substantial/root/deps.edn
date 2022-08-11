@@ -1,14 +1,10 @@
-{:paths ["src" "resources" "test"]
+{:deps
+ {io.github.yosevu/substantial {:git/sha "589517a415e5ef5c13cac32148ac89d3d9b1a49f"}}
 
- :deps {org.clojure/clojure {:mvn/version "1.11.1"}
-        org.clojure/tools.cli {:mvn/version "1.0.206"}
-        markdown-clj/markdown-clj {:mvn/version "1.11.1"}
-        hiccup/hiccup             {:mvn/version "2.0.0-alpha2"}}
-
- :tools/usage
- {:ns-default substantial.core}
-
- :aliases {:build     {:exec-fn substantial.core/build}
-           :create    {:exec-fn substantial.core/create}
-           :publish   {:exec-fn substantial.scripts/publish}
-           :unit      {:exec-fn substantial.core-test/unit}}}
+ :aliases
+ {:create
+  {:exec-fn substantial.core/create}
+  :build
+  {:exec-fn substantial.core/build}
+  :publish
+  {:exec-fn substantial.core/publish}}}
