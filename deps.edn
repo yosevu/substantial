@@ -1,5 +1,5 @@
 {:paths
- ["src" "resources" "template" "test"]
+ ["src" "resources" "template"]
 
  :deps
  {org.clojure/clojure
@@ -16,8 +16,10 @@
   {:exec-fn substantial.core/create}
   :build
   {:exec-fn substantial.core/build}
-  :publish
-  ;; move to core
-  {:exec-fn substantial.scripts/publish}
-  :unit
-  {:exec-fn substantial.core-test/unit}}}
+  :release
+  {}
+  :test
+  {:extra-paths ["test"]
+   :extra-deps {io.github.cognitect-labs/test-runner
+                {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+   :exec-fn cognitect.test-runner.api/test}}}

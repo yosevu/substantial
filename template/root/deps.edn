@@ -1,11 +1,10 @@
 {:deps
- {io.github.yosevu/substantial {:git/sha "6b629b868c764c0cd4fc23a0133cd62de881a229"}}
+ {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "980c935"}}
 
  :aliases
  {:create
   {:exec-fn substantial.core/create}
   :build
   {:exec-fn substantial.core/build}
-   ;; :exec-args}
-  :publish
-  {:exec-fn substantial.core/publish}}}
+  :scripts {:deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
+            :ns-default scripts}}}
