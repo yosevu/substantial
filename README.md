@@ -20,7 +20,7 @@ A minimal static site generator built with Clojure.
 ### Create site
 
 ``` sh
-clj -Sdeps '{:deps {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "SHORT_SHA"}}}' -Tnew create :template org.substantial/new :name myname/mysite
+clj -Sdeps '{:deps {io.github.yosevu/substantial {:git/tag "TAG" :git/sha "SHORT_SHA"}}}' -Tnew create :template org.substantial/new :name myname/mysite
 ```
 
 ### Build Site
