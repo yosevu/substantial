@@ -27,10 +27,13 @@
   (keyword (first args)))
 
 (defn build
+  "Builds html pagse from markdown content
+
+  Requires a config.edn"
   [opts]
   (println "Building site.")
   (get-meta-dictionary)
-  (let [config (get-config)
+  (let [config (get-config (:path opts))
         notes (get-notes)
         note-pages (create-note-pages config notes)
         results (write-pages site-path note-pages)]
@@ -52,4 +55,5 @@
   (create-config))
 
 (comment
-  (create {:name "my-notes"}))
+  (create {:name "my-notes"})
+  (build {:site-url "" :path "template/root/"}))

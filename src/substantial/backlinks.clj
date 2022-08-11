@@ -5,9 +5,9 @@
   (:require
    [clojure.string :as string]
    [substantial.metadata :refer [get-meta-dictionary]]
-   [substantial.utilities :refer [get-config]]))
+   [substantial.utilities :refer [get-config-entry]]))
 
-(def site-url (get-config :site-url))
+(def site-url (get-config-entry :site-url "template/root/"))
 
 (def backlink-match
   "Matches a relative backlink.

@@ -35,15 +35,18 @@
   []
   (spit (str "template/root/config.edn") default-config))
 
+;; TODO run with different config path from core vs template
+;; Default to template, current directory
 (defn get-config
   "Get config object: `(get-config)`
    Get config entry: `(get-config :site-url)`"
-  ([]
-   (if (.exists (file "config.edn"))
-     (edn/read-string (slurp "config.edn"))
-     (do (spit "config.edn" default-config)
-         (edn/read-string (slurp "config.edn")))))
-  ([entry-key]
-   (entry-key (get-config))))
+  [path]
+  (edn/read-string (slurp (str path "config.edn"))))
 
-(comment)
+(defn get-config-entry
+  [entry-key path]
+  (entry-key (get-config path)))
+
+(comment
+  (get-config "template/root/")
+  (get-config-entry :site-url "template/root/"))
