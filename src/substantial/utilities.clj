@@ -22,6 +22,7 @@
 (defn get-files
   "Gets a list of valid files from `path`."
   [path]
+  (println path)
   (map get-file (->> path file file-seq rest)))
 
 (def default-config
@@ -38,14 +39,18 @@
 ;; TODO run with different config path from core vs template
 ;; Default to template, current directory
 (defn get-config
-  "Get config object: `(get-config)`
-   Get config entry: `(get-config :site-url)`"
-  [path]
-  (edn/read-string (slurp (str path "config.edn"))))
+  "Get config object: `(get-config)` with default root path
+   Get config entry: `(get-config path)` path arg."
+  ([]
+   (edn/read-string (slurp "config.edn")))
+  ([path]
+   (edn/read-string (slurp (str path "config.edn")))))
 
 (defn get-config-entry
-  [entry-key path]
-  (entry-key (get-config path)))
+  ([entry-key]
+   (entry-key (get-config)))
+  ([entry-key path]
+   (entry-key (get-config path))))
 
 (comment
   (get-files "template/content/")

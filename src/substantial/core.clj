@@ -53,6 +53,7 @@
   (println "Creating site.")
   (create-config (:root-path opts)))
 
+;; FIXME reconsider using "/" in direcotry name move it to utility functions
 (comment
   (create {:root-path "template/root/"})
   (create {}) ;; "." from template root
@@ -60,5 +61,5 @@
           :content-path "template/content/"
           :assets-path "template/static/"})
   (build {:root-path ""
-          :content-path "content"
-          :assets-path "static"}))
+          :content-path "content/"
+          :assets-path "static/"}))

@@ -1,5 +1,5 @@
 {:deps
- {io.github.yosevu/substantial {:git/sha "589517a415e5ef5c13cac32148ac89d3d9b1a49f"}}
+ {io.github.yosevu/substantial {:git/sha "6b629b868c764c0cd4fc23a0133cd62de881a229"}}
 
  :aliases
  {:create

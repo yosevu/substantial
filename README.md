@@ -17,6 +17,12 @@ A minimal static site generator built with Clojure.
 
 ## Usage
 
+### Create site
+
+``` sh
+clj -Sdeps '{:deps {io.github.yosevu/substantial {:git/sha "57bba1a0a7f9962d0c2ebb535314e286a7370eea"}}}' -Tnew create :template org.substantial/new :name yosevu/notes
+```
+
 ### Init Site
 
 ``` sh

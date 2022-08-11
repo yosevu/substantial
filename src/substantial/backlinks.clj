@@ -5,9 +5,10 @@
   (:require
    [clojure.string :as string]
    [substantial.metadata :refer [get-meta-dictionary]]
-   [substantial.utilities :refer [get-config-entry]]))
+   [substantial.utilities :refer [get-config get-config-entry]]))
 
-(def site-url (get-config-entry :site-url "template/root/"))
+;; TODO make dynamic based on env.
+(def site-url (get-config-entry :site-url))
 
 (def backlink-match
   "Matches a relative backlink.
@@ -86,4 +87,5 @@
     [line-with-backlinks state]))
 
 (comment
+  (get-config "template/root/")
   (println site-url))
