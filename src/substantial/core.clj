@@ -3,7 +3,7 @@
    [clojure.java.io :as io]
    [substantial.notes :refer [get-note get-notes]]
    [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
-   [substantial.utilities :refer [create-site create-config create-resources create-example-notes get-config]]
+   [substantial.utilities :refer [create-config  get-config]]
    [substantial.pages :refer [create-note-page]]))
 
 (def site-path "example-site/")
@@ -49,10 +49,7 @@
   Example: clj -Tsub :name example-site"
   [opts]
   (println "Creating site.")
-  (create-site (str (:name opts)))
-  (create-config (str (:name opts)))
-  (create-resources (str (:name opts)))
-  (create-example-notes (str (:name opts))))
+  (create-config))
 
 (comment
   (create {:name "my-notes"}))

@@ -30,48 +30,10 @@
    :description "my description"
    :site-url ""})
 
-(defn create-site
-  [site-name]
-  (.mkdir (file site-name)))
-
+;; TODO pass opts to merge with default config
 (defn create-config
-  [site-path]
-  (.mkdir (file site-path))
-  (spit (str site-path "/config.edn") default-config))
-
-  ;; (write-file (str site-path "config.edn") default-config))
-
-(defn create-example-notes
-  [site-path]
-  (let [example-index "/notes/index.md"
-        example-note-1 "/notes/my-note.md"
-        example-note-2 "/notes/another-note.md"]
-
-    (make-parents (str site-path example-index))
-    (make-parents (str site-path example-note-1))
-    (make-parents (str site-path example-note-2))
-
-    ;; Isn't copying files correctly
-    (copy (file example-index) (file (str site-path example-index)))
-    (copy (file example-note-1) (file (str site-path example-note-1)))
-    (copy (file example-note-2) (file (str site-path example-note-2)))))
-
-(defn create-resources
-  "Create resources including:
-  - css
-  - js"
-  [site-path]
-  (let [main-css-path "/resources/css/main.css"
-        highlight-css-path "/resources/css/highlight.css"
-        highlight-js-path "/resources/js/highlight.js"]
-
-    (make-parents (str site-path main-css-path))
-    (make-parents (str site-path highlight-css-path))
-    (make-parents (str site-path highlight-js-path))
-
-    (copy (file main-css-path) (file (str site-path main-css-path)))
-    (copy (file highlight-css-path) (file (str site-path highlight-css-path)))
-    (copy (file highlight-js-path) (file (str site-path highlight-js-path)))))
+  []
+  (spit (str "template/root/config.edn") default-config))
 
 (defn get-config
   "Get config object: `(get-config)`
@@ -84,10 +46,4 @@
   ([entry-key]
    (entry-key (get-config))))
 
-(comment
-  (write-file "example-notes/config.edn" "{}")
-  (get-config)
-  (create-site "example-site")
-  (create-config "example-site")
-  (create-resources "example-site")
-  (create-example-notes "example-site"))
+(comment)
