@@ -1,5 +1,6 @@
-(ns templates.note
-  (:require [templates.partials :refer [create-page create-head create-body]]))
+(ns substantial.pages
+  (:require
+   [substantial.partials :refer [create-page create-head create-body]]))
 
 (defn create-note-page
   "Create a page for a note."

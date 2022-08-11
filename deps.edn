@@ -1,1 +1,23 @@
-{:paths ["resources"]}
+{:paths
+ ["src" "resources" "test"]
+
+ :deps
+ {org.clojure/clojure
+  {:mvn/version "1.11.1"}
+  org.clojure/tools.cli
+  {:mvn/version "1.0.206"}
+  markdown-clj/markdown-clj
+  {:mvn/version "1.11.1"}
+  hiccup/hiccup
+  {:mvn/version "2.0.0-alpha2"}}
+
+ :aliases
+ {:create
+  {:exec-fn substantial.core/create}
+  :build
+  {:exec-fn substantial.core/build}
+  :publish
+  ;; move to core
+  {:exec-fn substantial.scripts/publish}
+  :unit
+  {:exec-fn substantial.core-test/unit}}}

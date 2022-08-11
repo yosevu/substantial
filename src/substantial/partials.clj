@@ -1,4 +1,4 @@
-(ns templates.partials
+(ns substantial.partials
   (:require [hiccup.page :refer [html5]]
             [hiccup.element :refer [link-to]]))
 

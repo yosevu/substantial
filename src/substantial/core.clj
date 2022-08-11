@@ -1,11 +1,10 @@
 (ns substantial.core
-  (:require [clojure.tools.cli :refer [parse-opts]]
-            [clojure.java.io :as io]
-            [substantial.notes :refer [get-note get-notes]]
-            [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
-            [substantial.utilities :refer [create-site create-config create-resources create-example-notes get-config]]
-            [templates.note :refer [create-note-page]])
-  (:gen-class))
+  (:require
+   [clojure.java.io :as io]
+   [substantial.notes :refer [get-note get-notes]]
+   [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
+   [substantial.utilities :refer [create-site create-config create-resources create-example-notes get-config]]
+   [substantial.pages :refer [create-note-page]]))
 
 (def site-path "example-site/")
 (def ext "html")
@@ -55,20 +54,5 @@
   (create-resources (str (:name opts)))
   (create-example-notes (str (:name opts))))
 
-;; (defn -main
-;;   "Build `notes` to files with `<template>-pages`."
-;;   [& args]
-;;   (let [option (parse-args args)]
-;;     (println args)
-;;     (case option
-;;       (:build nil) (build)
-;;       :init (create)
-;;       :help "help"
-;;       (println (str "Invalid option " (print-str option))))))
-
 (comment
-  (create :name "example-site")
-  (get-notes)
-  (get-note "backlinks-test")
-  (vec (set [[1] [1] [2] [3]]))
-  (io/delete-file "note-2.html"))
+  (create {:name "my-notes"}))
