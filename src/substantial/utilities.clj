@@ -28,12 +28,12 @@
   {:title "my title"
    :author "my author"
    :description "my description"
-   :site-url ""})
+   :site-url "https://notes.myname.com"})
 
 ;; TODO pass opts to merge with default config
 (defn create-config
-  []
-  (spit (str "template/root/config.edn") default-config))
+  [path]
+  (spit (str path "config.edn") default-config))
 
 ;; TODO run with different config path from core vs template
 ;; Default to template, current directory
@@ -48,5 +48,6 @@
   (entry-key (get-config path)))
 
 (comment
+  (get-files "template/content/")
   (get-config "template/root/")
   (get-config-entry :site-url "template/root/"))

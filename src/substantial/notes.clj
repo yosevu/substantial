@@ -1,6 +1,6 @@
 (ns substantial.notes
   "Trasform notes in Markdown files to HTML strings.
-  
+
    `get-notes`
    `get-note`
    `get-meta-dictionary`"
@@ -9,8 +9,6 @@
    [markdown.transformers :refer [transformer-vector]]
    [substantial.backlinks :refer [add-backlinks collect-backlinks]]
    [substantial.utilities :refer [get-files]]))
-
-(def default-notes-path "notes")
 
 (defn- sort-by-date [notes]
   (reverse (sort-by #(get-in (:metadata %) [:date]) notes)))
@@ -37,23 +35,25 @@
                         :html html
                         :backlinks backlinks})))
 
+;; TODO create default content path
 (defn get-notes
   "(get-notes)
    (get-notes string)
-   Get notes from filepath."
-  ([] (get-notes default-notes-path))
-  ([notes-path]
-   (reduce create-note
-           {}
-           (get-files notes-path))))
+   Get notes from filepath.
 
+   content/ is the default path"
+  [content-path]
+  (reduce create-note
+          {}
+          (get-files content-path)))
+
+;; TODO update pass path
 (defn get-note
   "(get-note string)
    Get note by id."
   [id]
-  ((keyword id) (get-notes)))
+  ((keyword id) (get-notes "template/content/")))
 
 (comment
-  (sort-by-date (get-notes)))
-
-  
+  (get-notes "template/content/")
+  (sort-by-date (get-notes "template/content/")))

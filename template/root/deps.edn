@@ -6,5 +6,6 @@
   {:exec-fn substantial.core/create}
   :build
   {:exec-fn substantial.core/build}
+   ;; :exec-args}
   :publish
   {:exec-fn substantial.core/publish}}}

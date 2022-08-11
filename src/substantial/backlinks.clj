@@ -59,9 +59,10 @@
   [backlink]
   (re-find #"(?<=\/).+?(?=\))" backlink))
 
+;; FIXME dynamic content path
 (defn- get-backlink-heading
   [id]
-  (let [key ((keyword id) (get-meta-dictionary))]
+  (let [key ((keyword id) (get-meta-dictionary "template/content/"))]
     (if (nil? key)
       (throw (Exception. (str "Error: " id ".md does not exist.")))
       (:heading key))))
@@ -85,4 +86,4 @@
     [line-with-backlinks state]))
 
 (comment
-  site-url)
+  (println site-url))

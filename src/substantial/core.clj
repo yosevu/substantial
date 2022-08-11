@@ -17,9 +17,8 @@
 
 (defn write-pages
   "Write `pages` to files with."
-  [site-path pages]
-  (.mkdir (io/file site-path))
-  (map (fn [[page-name content]] (spit (str site-path (name page-name) "." ext) content))
+  [path pages]
+  (map (fn [[page-name content]] (spit (str path (name page-name) "." ext) content))
        pages))
 
 (defn parse-args
@@ -32,11 +31,11 @@
   Requires a config.edn"
   [opts]
   (println "Building site.")
-  (get-meta-dictionary)
-  (let [config (get-config (:path opts))
-        notes (get-notes)
+  (get-meta-dictionary (:content-path opts))
+  (let [config (get-config (:root-path opts))
+        notes (get-notes (:content-path opts))
         note-pages (create-note-pages config notes)
-        results (write-pages site-path note-pages)]
+        results (write-pages (:assets-path opts) note-pages)]
     (println (str "Built " (count results) " pages."))
     (println "Done.")
     (reset-meta-dictionary)))
@@ -52,8 +51,14 @@
   Example: clj -Tsub :name example-site"
   [opts]
   (println "Creating site.")
-  (create-config))
+  (create-config (:root-path opts)))
 
 (comment
-  (create {:name "my-notes"})
-  (build {:site-url "" :path "template/root/"}))
+  (create {:root-path "template/root/"})
+  (create {}) ;; "." from template root
+  (build {:root-path "template/root/"
+          :content-path "template/content/"
+          :assets-path "template/static/"})
+  (build {:root-path ""
+          :content-path "content"
+          :assets-path "static"}))

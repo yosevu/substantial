@@ -3,8 +3,6 @@
    [clojure.string :as string]
    [substantial.utilities :refer [get-files]]))
 
-(def default-notes-path "notes")
-
 (def meta-dictionary (atom nil))
 
 (defn parse-metadata-line [line]
@@ -19,22 +17,20 @@
        (into {})))
 
 (defn set-meta-dictionary
-  ([] (set-meta-dictionary default-notes-path))
-  ([filepath]
-   (->> (get-files filepath)
-        (map (fn [filestring] (parse-metadata filestring)))
-        (reduce (fn [my-map meta] (assoc my-map (keyword (:id meta)) meta)) {})
-        (swap! meta-dictionary (into {})))))
+  [path]
+  (->> (get-files path)
+       (map (fn [filestring] (parse-metadata filestring)))
+       (reduce (fn [my-map meta] (assoc my-map (keyword (:id meta)) meta)) {})
+       (swap! meta-dictionary (into {}))))
 
 ;; FIXME dynamic filepath
-(defn get-meta-dictionary []
-  (if (nil? @meta-dictionary) (set-meta-dictionary) @meta-dictionary))
+(defn get-meta-dictionary [path]
+  (if (nil? @meta-dictionary) (set-meta-dictionary path) @meta-dictionary))
 
 (defn reset-meta-dictionary []
   (reset! meta-dictionary nil))
 
 (comment
-  (get-meta-dictionary)
+  (get-meta-dictionary "template/content/")
   @meta-dictionary
   (reset-meta-dictionary))
-  
