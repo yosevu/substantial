@@ -9,8 +9,8 @@
   (let [commit-sha (git-subtree)]
     (apply sh (split (str "git push origin " commit-sha ":gh-pages --force") #" "))))
 
-(defn update [_]
-  (println "Updating substantial."))
+(defn upgrade [_]
+  (println "Upgrading substantial."))
 
 (defn publish [_]
   (println (:out (sh "clj" "-M:build")))
