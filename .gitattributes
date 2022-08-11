@@ -1,1 +1,2 @@
-site/*.html linguist-vendored
+highlight.css linguist-vendored
+highlight.js linguist-vendored
