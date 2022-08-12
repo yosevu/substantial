@@ -23,48 +23,50 @@
   [args]
   (keyword (first args)))
 
-(def default-opts
-  {:root-path "resources/org/substantial/new/root"
-   :content-path "resources/org/substantial/new/content"
-   :static-path "resources/org/substantial/new/static"})
+(defn get-opts
+  "Gets map of option paths to resources
+   template-path must includes `/` e.g. `resources/org/substantial/new/`"
+  [{:keys [template-path]}]
+  {:root-path (str template-path (if (empty? template-path) "" "root/"))
+   :content-path (str template-path "content/")
+   :static-path (str template-path "static/")})
 
 ;; TODO find idiomatic way to merge default opts
 (defn build
   "Builds html pagse from markdown content
-  Requires a config.edn"
-  [& args]
-  (println "Building site.")
-  (get-meta-dictionary (:content-path (merge default-opts args)))
-  (println (merge default-opts args))
-  (let [opts (merge default-opts args)
-        config (get-config (:root-path opts))
-        notes (get-notes (:content-path opts))
-        note-pages (create-note-pages config notes)
-        results (write-pages (:static-path opts) note-pages)]
-    (println (str "Built " (count results) " pages."))
-    (println "Done.")
-    (reset-meta-dictionary)))
+
+   Requires a site config.edn. Create a site config.edn with `create`.
+
+   - `(build)` with no args is for template project.
+   - `(build args)` with args is for template development."
+  ([] (build {:template-path ""}))
+  ([args]
+   (println "Building site.")
+   (get-meta-dictionary (:content-path (get-opts args)))
+   (let [opts (get-opts args)
+         config (get-config (:root-path opts))
+         notes (get-notes (:content-path opts))
+         note-pages (create-note-pages config notes)
+         results (write-pages (:static-path opts) note-pages)]
+     (println (str "Built " (count results) " pages."))
+     (println "Done.")
+     (reset-meta-dictionary))))
 
 (defn create
-  "Creates a site with custom configuration.
+  "Creates site config using `template-path` from args
+   or at project root if called with no args.
+   `template-path` must includ a `/`."
+  ([] (create {:template-path ""}))
+  ([args]
+   (println "Creating site config.")
+   (create-config (:root-path (get-opts args)))))
 
-  - Creates config.edn
-  - Creates resources
-  - Creates example notes
-  - Creates custom README
+(def test-args {:template-path "resources/org/substantial/new/"})
 
-  Example: clj -Tsub :name example-site"
-  [& args]
-  (println "Creating site.")
-  (create-config (:root-path (merge default-opts args))))
-
-;; FIXME reconsider using "/" in direcotry name move it to utility functions
 (comment
-  (create {:root-path "template/root/"})
-  (create {} ;; "." from template root
-          :content-path "template/content/"
-          :assets-path "template/static/")
+  (get-opts {})
+  (get-opts test-args)
+  (create)
+  (create test-args)
   (build)
-  (build {:root-path ""
-          :content-path "content/"
-          :assets-path "static/"}))
+  (build test-args))

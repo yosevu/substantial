@@ -17,20 +17,22 @@
        (into {})))
 
 (defn set-meta-dictionary
-  [path]
-  (->> (get-files path)
+  [content-path]
+  (->> (get-files content-path)
        (map (fn [filestring] (parse-metadata filestring)))
        (reduce (fn [my-map meta] (assoc my-map (keyword (:id meta)) meta)) {})
        (swap! meta-dictionary (into {}))))
 
 ;; FIXME dynamic filepath
-(defn get-meta-dictionary [path]
-  (if (nil? @meta-dictionary) (set-meta-dictionary path) @meta-dictionary))
+(defn get-meta-dictionary
+  ([] (get-meta-dictionary "resources/org/substantial/new/content/"))
+  ([content-path]
+   (if (nil? @meta-dictionary) (set-meta-dictionary content-path) @meta-dictionary)))
 
 (defn reset-meta-dictionary []
   (reset! meta-dictionary nil))
 
 (comment
-  (get-meta-dictionary "resources/org/substantial/new/content")
+  (get-meta-dictionary "resources/org/substantial/new/content/")
   @meta-dictionary
   (reset-meta-dictionary))

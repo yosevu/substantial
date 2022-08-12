@@ -33,28 +33,17 @@
 
 ;; TODO pass opts to merge with default config
 (defn create-config
+  "path includes `/`"
   [path]
-  (spit (str path "/" "config.edn") default-config))
+  (spit (str path "config.edn") default-config))
 
 ;; TODO run with different config path from core vs template
 ;; Default to template, current directory
 (defn get-config
   "Get config object: `(get-config)` with default root path
-   Get config entry: `(get-config path)` path arg."
+   Get config entry: `(get-config path)` path arg.
+   path includes `/`"
   ([]
-   (edn/read-string (slurp  "/" "config.edn")))
+   (edn/read-string (slurp "config.edn")))
   ([path]
-   (println (str path "/" "config.edn"))
-   (edn/read-string (slurp (str path "/" "config.edn")))))
-
-(defn get-config-entry
-  ([entry-key]
-   (entry-key (get-config)))
-  ([entry-key path]
-   (println "get-config-entry" (get-config path))
-   (entry-key (get-config path))))
-
-(comment
-  (get-files "content")
-  (get-config "resources/org/substantial/new/root")
-  (get-config-entry :site-url "resources/org/substantial/new/root"))
+   (edn/read-string (slurp (str path "config.edn")))))

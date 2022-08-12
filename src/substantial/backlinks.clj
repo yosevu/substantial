@@ -5,11 +5,14 @@
   (:require
    [clojure.string :as string]
    [substantial.metadata :refer [get-meta-dictionary]]
-   [substantial.utilities :refer [get-config get-config-entry]]))
+   [substantial.utilities :refer [get-config]]))
 
 ;; TODO make dynamic based on env.
 (defn get-site-url []
-  (get-config-entry :site-url "resources/org/substantial/new/root"))
+  ;; for template project
+  (:site-url (get-config)))
+  ;; for template development
+  ;; (:site-url (get-config "resources/org/substantial/new/root/")))
 
 (def backlink-match
   "Matches a relative backlink.
@@ -64,8 +67,7 @@
 ;; FIXME dynamic content path
 (defn- get-backlink-heading
   [id]
-  (let [key ((keyword id) (get-meta-dictionary "resources/org/substantial/new/content"))]
-    (println (get-meta-dictionary "resources/org/substantial/new/content"))
+  (let [key ((keyword id) (get-meta-dictionary))]
     (if (nil? key)
       (throw (Exception.
               (str "Error: The id \"" id "\" does not exist.
@@ -90,6 +92,4 @@
   (let [line-with-backlinks (transform-backlink text)]
     [line-with-backlinks state]))
 
-(comment
-  (get-config "root")
-  (println site-url))
+(comment)

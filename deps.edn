@@ -13,9 +13,11 @@
 
  :aliases
  {:create
-  {:exec-fn substantial.core/create}
+  {:exec-fn substantial.core/create
+   :exec-args {:template-path "resources/org/substantial/new/"}}
   :build
-  {:exec-fn substantial.core/build}
+  {:exec-fn substantial.core/build
+   :exec-args {:template-path "resources/org/substantial/new/"}}
   :release
   {}
   :test
