@@ -13,17 +13,13 @@
 
  :aliases
  {:create
-  {:exec-fn substantial.core/create
-   :exec-args {:template-path "resources/org/substantial/new/"}}
+  {:exec-fn substantial.core/create}
   :build
-  {:exec-fn substantial.core/build
-   :exec-args {:template-path "resources/org/substantial/new/"}}
+  {:exec-fn substantial.core/build}
   :release
   {}
   :test
   {:extra-paths ["test"]
    :extra-deps {io.github.cognitect-labs/test-runner
                 {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
-   :exec-fn cognitect.test-runner.api/test}
-  :scripts {:deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
-            :ns-default scripts}}}
+   :exec-fn cognitect.test-runner.api/test}}}

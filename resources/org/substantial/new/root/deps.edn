@@ -1,8 +1,10 @@
 {:deps
- {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "9255eca"}}
+ {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "6d39254"}}
 
  :aliases
  {:create
   {:exec-fn substantial.core/create}
   :build
-  {:exec-fn substantial.core/build}}}
+  {:exec-fn substantial.core/build}
+  :publish
+  {:exec-fn substantial.scripts/publish}}}

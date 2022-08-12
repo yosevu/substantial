@@ -15,7 +15,6 @@
 (defn get-file
   "Gets a valid file or throws."
   [file]
-  (println file)
   (if (valid-filename file)
     (slurp file)
     (throw (Exception. (str "Error: " (.getName file) " is not a valid filename.")))))
