@@ -15,6 +15,7 @@
 (defn get-file
   "Gets a valid file or throws."
   [file]
+  (println file)
   (if (valid-filename file)
     (slurp file)
     (throw (Exception. (str "Error: " (.getName file) " is not a valid filename.")))))
@@ -22,7 +23,6 @@
 (defn get-files
   "Gets a list of valid files from `path`."
   [path]
-  (println path)
   (map get-file (->> path file file-seq rest)))
 
 (def default-config
@@ -34,7 +34,7 @@
 ;; TODO pass opts to merge with default config
 (defn create-config
   [path]
-  (spit (str path "config.edn") default-config))
+  (spit (str path "/" "config.edn") default-config))
 
 ;; TODO run with different config path from core vs template
 ;; Default to template, current directory
@@ -42,17 +42,19 @@
   "Get config object: `(get-config)` with default root path
    Get config entry: `(get-config path)` path arg."
   ([]
-   (edn/read-string (slurp "config.edn")))
+   (edn/read-string (slurp  "/" "config.edn")))
   ([path]
-   (edn/read-string (slurp (str path "config.edn")))))
+   (println (str path "/" "config.edn"))
+   (edn/read-string (slurp (str path "/" "config.edn")))))
 
 (defn get-config-entry
   ([entry-key]
    (entry-key (get-config)))
   ([entry-key path]
+   (println "get-config-entry" (get-config path))
    (entry-key (get-config path))))
 
 (comment
-  (get-files "template/content/")
-  (get-config "template/root/")
-  (get-config-entry :site-url "template/root/"))
+  (get-files "content")
+  (get-config "resources/org/substantial/new/root")
+  (get-config-entry :site-url "resources/org/substantial/new/root"))

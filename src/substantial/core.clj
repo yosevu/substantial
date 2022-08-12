@@ -6,9 +6,6 @@
    [substantial.utilities :refer [create-config  get-config]]
    [substantial.pages :refer [create-note-page]]))
 
-(def site-path "example-site/")
-(def ext "html")
-
 (defn create-note-pages
   "Create note pages with `notes` and `<template>-page`."
   [config notes]
@@ -18,24 +15,32 @@
 (defn write-pages
   "Write `pages` to files with."
   [path pages]
-  (map (fn [[page-name content]] (spit (str path (name page-name) "." ext) content))
+  (map (fn [[page-name content]]
+         (spit (str path "/" (name page-name) ".html") content))
        pages))
 
 (defn parse-args
   [args]
   (keyword (first args)))
 
+(def default-opts
+  {:root-path "resources/org/substantial/new/root"
+   :content-path "resources/org/substantial/new/content"
+   :static-path "resources/org/substantial/new/static"})
+
+;; TODO find idiomatic way to merge default opts
 (defn build
   "Builds html pagse from markdown content
-
   Requires a config.edn"
-  [opts]
+  [& args]
   (println "Building site.")
-  (get-meta-dictionary (:content-path opts))
-  (let [config (get-config (:root-path opts))
+  (get-meta-dictionary (:content-path (merge default-opts args)))
+  (println (merge default-opts args))
+  (let [opts (merge default-opts args)
+        config (get-config (:root-path opts))
         notes (get-notes (:content-path opts))
         note-pages (create-note-pages config notes)
-        results (write-pages (:assets-path opts) note-pages)]
+        results (write-pages (:static-path opts) note-pages)]
     (println (str "Built " (count results) " pages."))
     (println "Done.")
     (reset-meta-dictionary)))
@@ -49,17 +54,17 @@
   - Creates custom README
 
   Example: clj -Tsub :name example-site"
-  [opts]
+  [& args]
   (println "Creating site.")
-  (create-config (:root-path opts)))
+  (create-config (:root-path (merge default-opts args))))
 
 ;; FIXME reconsider using "/" in direcotry name move it to utility functions
 (comment
   (create {:root-path "template/root/"})
-  (create {}) ;; "." from template root
-  (build {:root-path "template/root/"
+  (create {} ;; "." from template root
           :content-path "template/content/"
-          :assets-path "template/static/"})
+          :assets-path "template/static/")
+  (build)
   (build {:root-path ""
           :content-path "content/"
           :assets-path "static/"}))

@@ -1,4 +1,5 @@
 (ns scripts
+  ""
   (:require [clojure.java.shell :refer [sh]]
             [clojure.string :refer [split trim]]))
 

@@ -5,6 +5,4 @@
  {:create
   {:exec-fn substantial.core/create}
   :build
-  {:exec-fn substantial.core/build}
-  :scripts {:deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
-            :ns-default scripts}}}
+  {:exec-fn substantial.core/build}}}
