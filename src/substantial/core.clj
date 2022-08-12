@@ -44,7 +44,7 @@
    (println "Building site.")
    (get-meta-dictionary (:content-path (get-opts args)))
    (let [opts (get-opts args)
-         config (get-config (:root-path opts))
+         config (get-config)
          notes (get-notes (:content-path opts))
          note-pages (create-note-pages config notes)
          results (write-pages (:static-path opts) note-pages)]

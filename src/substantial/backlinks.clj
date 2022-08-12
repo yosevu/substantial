@@ -7,12 +7,8 @@
    [substantial.metadata :refer [get-meta-dictionary]]
    [substantial.utilities :refer [get-config]]))
 
-;; TODO make dynamic based on env.
 (defn get-site-url []
-  ;; for template project
   (:site-url (get-config)))
-  ;; for template development
-  ;; (:site-url (get-config "resources/org/substantial/new/root/")))
 
 (def backlink-match
   "Matches a relative backlink.
@@ -92,4 +88,5 @@
   (let [line-with-backlinks (transform-backlink text)]
     [line-with-backlinks state]))
 
-(comment)
+(comment
+  (get-config))

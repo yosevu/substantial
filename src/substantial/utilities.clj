@@ -37,13 +37,15 @@
   [path]
   (spit (str path "config.edn") default-config))
 
-;; TODO run with different config path from core vs template
-;; Default to template, current directory
+;; TODO make dynamic based on env.
 (defn get-config
   "Get config object: `(get-config)` with default root path
    Get config entry: `(get-config path)` path arg.
    path includes `/`"
-  ([]
-   (edn/read-string (slurp "config.edn")))
-  ([path]
-   (edn/read-string (slurp (str path "config.edn")))))
+  []
+  (if (.exists (file "config.edn"))
+    (edn/read-string (slurp "config.edn"))
+    (edn/read-string (slurp "resources/org/substantial/new/root/config.edn"))))
+
+(comment
+  (get-config))
