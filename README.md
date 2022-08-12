@@ -17,18 +17,25 @@ A minimal static site generator built with Clojure.
 
 ## Usage
 
-### Create site
+### Create
+
+Create a site from the substantial template.
 
 ``` sh
 clj -Sdeps '{:deps {io.github.yosevu/substantial {:git/tag "TAG" :git/sha "SHORT_SHA"}}}' -Tnew create :template org.substantial/new :name myname/mysite
 ```
 
-### Build Site
+### Build
+
+Build the site.
+
 ``` sh
 clj -X:build
 ```
 
-### Publish Site
+### Publish
+
+Publish the site.
 
 - Create a [Github Pages](https://pages.github.com/) site to publish
 - Add a `CNAME` to the `public` directory.
@@ -91,33 +98,35 @@ Example:
 .
 ├── README.md
 ├── deps.edn
-├── notes
-│   ├── index.md
-│   ├── note.md
-├── public
-│   ├── CNAME
-│   ├── css
-│   │   ├── a11y-dark.min.css
-│   │   └── main.css
-│   ├── note.html
-│   ├── index.html
-│   ├── js
-│   │   └── highlight.min.js
-├── src
-│   ├── substantial
-│   │   ├── backlinks.clj
-│   │   ├── core.clj
-│   │   ├── metadata.clj
-│   │   ├── notes.clj
-│   │   └── utilities.clj
-│   └── templates
-│       ├── note.clj
-│       └── partials.clj
-├── test
-│   ├── backlink-test.md
-│   └── substantial
-│       └── core_test.clj
-```
+├── resources
+│   └── org
+│       └── substantial
+│           └── new
+│               ├── content
+│               │   ├── another-note.md
+│               │   ├── index.md
+│               │   └── my-note.md
+│               ├── root
+│               │   ├── config.edn
+│               │   └── deps.edn
+│               ├── static
+│               │   ├── css
+│               │   │   ├── highlight.css
+│               │   │   └── main.css
+│               │   └── js
+│               │       └── highlight.js
+│               └── template.edn
+└── src
+    └── substantial
+        ├── backlinks.clj
+        ├── core.clj
+        ├── metadata.clj
+        ├── notes.clj
+        ├── pages.clj
+        ├── partials.clj
+        ├── scripts.clj
+        └── utilities.clj
+ ```
 
 ### [Calva](https://calva.io/) (VS Code)
 
@@ -128,16 +137,3 @@ Example:
 
 - `cider-jack-in (cider-jack-in-clj`
 - `cider-ns-refresh`
-
-## Create binary
-
-### Build uberjar
-
-``` sh
-clj -T:build uberjar
-```
-### Generate binary
-
-``` sh
-native-image -jar target/substantial-UBERJAR_VERSION.jar -H:Name=BINARY_NAME
-```
