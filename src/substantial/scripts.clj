@@ -16,7 +16,7 @@
 (defn publish
   "Requires remote named gh-pages."
   [_]
-  (println (:out (sh "clj" "-M:build")))
+  (println (:out (sh "clj" "-X:build")))
   (println "Publishing site.")
   (let [{:keys [out err]} (git-push "static")]
     (when (seq out) (print out))
