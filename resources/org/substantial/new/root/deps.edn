@@ -1,5 +1,5 @@
 {:deps
- {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "bc0858c"}}
+ {io.github.yosevu/substantial {:git/tag "v0.0.1" :git/sha "ec2dbfa"}}
 
  :aliases
  {:create
