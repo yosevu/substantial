@@ -49,7 +49,6 @@
          note-pages (create-note-pages config notes)
          results (write-pages (:static-path opts) note-pages)]
      (println (str "Built " (count results) " pages."))
-     (println "Done.")
      (reset-meta-dictionary))))
 
 (defn create
