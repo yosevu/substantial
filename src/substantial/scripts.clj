@@ -3,11 +3,13 @@
   (:require [clojure.java.shell :refer [sh]]
             [clojure.string :refer [split trim]]))
 
-(defn- git-subtree [path]
-  (trim (:out (apply sh (split (str "git subtree split --prefix " path " main") #" ")))))
+(defn- git-subtree
+  "Requires static asset pathname to be `static`."
+  []
+  (trim (:out (apply sh (split "git subtree split --prefix static main" #" ")))))
 
-(defn- git-push [path]
-  (let [commit-sha (git-subtree path)]
+(defn- git-push []
+  (let [commit-sha (git-subtree)]
     (apply sh (split (str "git push origin " commit-sha ":gh-pages --force") #" "))))
 
 (defn update [_]
@@ -18,7 +20,7 @@
   [_]
   (println (:out (sh "clj" "-X:build")))
   (println "Publishing site.")
-  (let [{:keys [out err]} (git-push "static")]
+  (let [{:keys [out err]} (git-push)]
     (when (seq out) (print out))
     (when (seq err) (print err)))
   (println "Published site."))
