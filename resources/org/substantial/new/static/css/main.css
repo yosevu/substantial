@@ -284,3 +284,10 @@ img {
     max-width: 40rem;
   }
 }
+
+/* Custom Classes */
+
+.item-container {
+  display: flex;
+  justify-content: space-between;
+}

@@ -28,9 +28,7 @@
                 (link-to (str site-url "/" resource) text)]) blinks)]])
 
 (defn create-date
-  []
-  [:time])
-   ;; (first (:date (:metadata (last post))))])
+  [date] [:time date])
 
 (defn create-body
   [{:keys [site-url]} [content blinks]]
