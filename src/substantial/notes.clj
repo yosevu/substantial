@@ -35,6 +35,13 @@
                         :html html
                         :backlinks backlinks})))
 
+(def excluded-files #{:index})
+
+(defn exclude
+  [files]
+  (fn [[id]]
+    (contains? files id)))
+
 ;; TODO create default content path
 (defn get-notes
   "(get-notes)
@@ -43,9 +50,9 @@
 
    content/ is the default path"
   [content-path]
-  (reduce create-note
-          {}
-          (get-files content-path)))
+  (->> (get-files content-path)
+       (reduce create-note {})
+       (remove (exclude excluded-files))))
 
 ;; TODO update pass path
 (defn get-note

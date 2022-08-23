@@ -12,7 +12,7 @@
   (let [commit-sha (git-subtree)]
     (apply sh (split (str "git push origin " commit-sha ":gh-pages --force") #" "))))
 
-(defn update [_]
+(defn upgrade [_]
   (println "Not implemented."))
 
 (defn publish

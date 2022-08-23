@@ -33,6 +33,7 @@
   (reset! meta-dictionary nil))
 
 (comment
+  (get-meta-dictionary)
   (get-meta-dictionary "resources/org/substantial/new/content/")
   @meta-dictionary
   (reset-meta-dictionary))

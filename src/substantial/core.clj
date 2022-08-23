@@ -1,10 +1,11 @@
 (ns substantial.core
   (:require
    [clojure.java.io :as io]
+   [clojure.string :refer [ends-with?]]
    [substantial.notes :refer [get-note get-notes]]
    [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
-   [substantial.utilities :refer [create-config  get-config]]
-   [substantial.pages :refer [create-note-page]]))
+   [substantial.utilities :refer [create-config  get-config write-file]]
+   [substantial.pages :refer [create-index-page create-note-page]]))
 
 (defn create-note-pages
   "Create note pages with `notes` and `<template>-page`."
@@ -31,6 +32,14 @@
    :content-path (str template-path "content/")
    :static-path (str template-path "static/")})
 
+(defn html-file?
+  [file]
+  (ends-with? (.getName file) ".html"))
+
+(defn count-pages
+  [static-path]
+  (count (filter html-file? (file-seq (io/file static-path)))))
+
 ;; TODO find idiomatic way to merge default opts
 (defn build
   "Builds html pagse from markdown content
@@ -47,14 +56,16 @@
          config (get-config)
          notes (get-notes (:content-path opts))
          note-pages (create-note-pages config notes)
-         results (write-pages (:static-path opts) note-pages)]
-     (println (str "Built " (count results) " pages."))
+         index (create-index-page config)]
+     (write-pages (:static-path opts) note-pages)
+     (write-file (str (:static-path opts) "index.html") index)
+     (println (str "Built " (count-pages (:static-path opts)) " pages."))
      (reset-meta-dictionary))))
 
 (defn create
   "Creates site config using `template-path` from args
    or at project root if called with no args.
-   `template-path` must includ a `/`."
+   `template-path` must include a `/`."
   ([] (create {:template-path ""}))
   ([args]
    (println "Creating site config.")

@@ -1,5 +1,5 @@
 (ns substantial.utilities
-  (:require [clojure.java.io :refer [copy file make-parents]]
+  (:require [clojure.java.io :refer [file make-parents]]
             [clojure.edn :as edn]))
 
 (defn valid-filename

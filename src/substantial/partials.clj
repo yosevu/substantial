@@ -22,7 +22,7 @@
   [site-url blinks]
   [:aside
    [:h4 "Links to this note"]
-;;    [:ul (for [link links] [:li link])]])
+   ;; [:ul (for [link links] [:li link])]])
    [:ul (map (fn [[resource text]]
                [:li
                 (link-to (str site-url "/" resource) text)]) blinks)]])
@@ -37,6 +37,15 @@
      (when (seq blinks) (create-backlinks site-url blinks))]
     [:script {:src "js/highlight.js"}]
     [:script "hljs.highlightAll()"]]])
+
+(defn create-body-2
+  [{:keys [site-url]} [content]]
+  [:body
+   [:div.container
+    [:nav [:a {:href (str site-url "/")} "Index"]]
+    [:main content]
+    [:script {:src "js/highlight.js"}
+     [:script "hljs.highlightAll()"]]]])
 
 (defn create-page [head body]
   (html5 {:lang "en"}
