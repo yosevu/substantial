@@ -22,5 +22,4 @@
   (println "Publishing site.")
   (let [{:keys [out err]} (git-push)]
     (when (seq out) (print out))
-    (when (seq err) (print err)))
-  (println "Published site."))
+    (when (seq err) (print err))))

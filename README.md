@@ -39,13 +39,23 @@ Publish the site.
 
 - Create a [Github Pages](https://pages.github.com/) site to publish
 - Add a `CNAME` to the `public` directory.
-
-Clojure:
+- Publish with Clojure
 ```
 clj -X:publish
 ```
+Expected output:
+``` sh
+ clj -X:publish
+Building site.
+Built 10 pages.
+Done.
 
-Git:
+Publishing site.
+To github.com:username/my-site.git
+   782f5cd..383c707  383c707a75c849d2fadb550718323e436ab15e49 -> gh-pages
+```
+
+- Publish with Git:
 ```
 git push origin `git subtree split --prefix public main`:gh-pages --force
 ```
