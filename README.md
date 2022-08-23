@@ -1,14 +1,19 @@
-# substantial
+# **substantial**
+
+A static site generator of substance. A space for thoughts to be whole, connected, and real; not imaginary; to actually exist.
 
 > How can I be substantial if I do not cast a shadow? I must have a dark side also If I am to be whole.
 >
 > &mdash; Carl Jung
 
-A minimal static site generator built with Clojure.
-
-- Transforms Markdown files to HTML.
-- Uses [Hiccup](https://github.com/weavejester/hiccup) for HTML templating.
-- Aggregates backlinks.
+### Features
+- Create a new site.
+- Build a site from Markdown files.
+- Customize site with `config.edn`.
+- Generate an index page with links to all pages.
+- Connect pages with [backlinks](#backlinks).
+- Collect backlinks for each page.
+- Publish to GitHub Pages
 
 ### Example Sites
 
@@ -45,7 +50,7 @@ clj -X:publish
 ```
 Expected output:
 ``` sh
- clj -X:publish
+clj -X:publish
 Building site.
 Built 10 pages.
 Done.
@@ -76,8 +81,8 @@ Example:
 ### Metadata
 
 - `heading` (required): The main heading.
-- `id` (required): The unique short name (slug) displayed in the url used to link to the note.
 - `date` (required): The publication date.
+- `id` (required): The unique short name (slug) displayed in the url used to link to the note.
 
 Example:
 ```yaml
@@ -100,7 +105,23 @@ Example:
 [I am a backlink](/i-am-a-backlink)
 ```
 
-## Local Development 
+## Development 
+
+### Design Goals
+
+- Simplicity
+- Flexibility
+
+### Technical Goals
+- [x] Create site from template.
+- [x] Build site form Markdown files. 
+- [x] Publish site.
+- [x] Build for developers or anyone comfortable following technical instructions and using the command line.
+- [x] Syntax highlighting.
+- [x] Use [Hiccup](https://github.com/weavejester/hiccup) for HTML templating.
+- [ ] Customize theme.
+- [ ] Customize template with Hiccup.
+- [ ] Create component driven development environment with Storybook.
 
 ### Project Structure
 
