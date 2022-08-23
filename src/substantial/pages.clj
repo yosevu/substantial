@@ -2,7 +2,7 @@
   (:require
    [hiccup.element :refer [link-to]]
    [substantial.metadata :refer [get-meta-dictionary]]
-   [substantial.partials :refer [create-page create-head create-body create-body-2]]))
+   [substantial.partials :refer [create-page create-head create-body]]))
 
 (defn create-note-page
   "Create a page for a note."
@@ -30,7 +30,7 @@
   (let [html (build-index "notes.yosevu.com")]
     (create-page
      (create-head config)
-     (create-body-2 config [html]))))
+     (create-body config [html]))))
 
 (comment)
   ;; TODO not rendering list of links

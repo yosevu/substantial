@@ -27,6 +27,11 @@
                [:li
                 (link-to (str site-url "/" resource) text)]) blinks)]])
 
+(defn create-date
+  []
+  [:time])
+   ;; (first (:date (:metadata (last post))))])
+
 (defn create-body
   [{:keys [site-url]} [content blinks]]
   [:body
@@ -37,15 +42,6 @@
      (when (seq blinks) (create-backlinks site-url blinks))]
     [:script {:src "js/highlight.js"}]
     [:script "hljs.highlightAll()"]]])
-
-(defn create-body-2
-  [{:keys [site-url]} [content]]
-  [:body
-   [:div.container
-    [:nav [:a {:href (str site-url "/")} "Index"]]
-    [:main content]
-    [:script {:src "js/highlight.js"}
-     [:script "hljs.highlightAll()"]]]])
 
 (defn create-page [head body]
   (html5 {:lang "en"}
