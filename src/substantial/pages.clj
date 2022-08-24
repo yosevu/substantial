@@ -15,7 +15,7 @@
   "The base URL is prepended to relative paths by GitHub Pages."
   [site-url]
   (fn [[_ metadata]]
-    [:li
+    [:li {:class "index-link"}
      (link-to (:id metadata) (:heading metadata))
      (create-date (:date metadata))]))
 
