@@ -23,9 +23,10 @@
   [:aside
    [:h4 "Links to this note"]
    ;; [:ul (for [link links] [:li link])]])
-   [:ul (map (fn [[resource text]]
-               [:li
-                (link-to (str site-url "/" resource) text)]) blinks)]])
+   [:ul {:class "backlinks"}
+    (map (fn [[resource text]]
+           [:li
+            (link-to (str site-url "/" resource) text)]) blinks)]])
 
 (defn create-date
   [date] [:time date])
