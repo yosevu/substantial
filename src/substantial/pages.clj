@@ -22,14 +22,19 @@
 (defn sort-by-date [items]
   (reverse (sort-by #(get-in (:metadata %) [:date]) items)))
 
+;; TODO reuse substantial.notes.exclude from
+(defn exclude-index
+  [[id]]
+  (contains? #{:index} id))
+
 (defn build-index
   [site-url]
-  [:ul (map (create-index-link site-url) (sort-by-date (get-meta-dictionary)))])
+  [:ul (map (create-index-link site-url) (sort-by-date (remove exclude-index (get-meta-dictionary))))])
 
 (defn create-index-page
   "Build an index page
 
-  - Create list of all files
+  - Create list of all files excluding index.md
   - Render links with dates
   "
   [config]
@@ -38,7 +43,8 @@
      (create-head config)
      (create-body config [html]))))
 
-(comment)
+(comment
+  (println (remove exclude-index (get-meta-dictionary))))
   ;; (sort-by-date (get-meta-dictionary)))
   ;; TODO not rendering list of links
   ;; (build-index {:site-url "notes.yosevu.com"}))
