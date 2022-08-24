@@ -2,7 +2,7 @@
   (:require
    [clojure.java.io :as io]
    [clojure.string :refer [ends-with?]]
-   [substantial.notes :refer [get-note get-notes]]
+   [substantial.notes :refer [get-notes]]
    [substantial.metadata :refer [get-meta-dictionary reset-meta-dictionary]]
    [substantial.utilities :refer [create-config  get-config write-file]]
    [substantial.pages :refer [create-index-page create-note-page]]))
