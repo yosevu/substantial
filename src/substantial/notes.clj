@@ -38,9 +38,9 @@
 (def excluded-files #{:index})
 
 (defn exclude
-  [files]
+  [excluded-files]
   (fn [[id]]
-    (contains? files id)))
+    (contains? excluded-files id)))
 
 ;; TODO create default content path
 (defn get-notes
@@ -59,8 +59,8 @@
   "(get-note string)
    Get note by id."
   [id]
-  ((keyword id) (get-notes "template/content/")))
+  ((keyword id) (get-notes "resources/org/substantial/new/content/")))
 
 (comment
   (get-notes "template/content/")
-  (sort-by-date (get-notes "template/content/")))
+  (println (map first (sort-by-date (get-notes "resources/org/substantial/new/content/")))))
