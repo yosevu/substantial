@@ -16,9 +16,8 @@
   [site-url]
   (fn [[_ metadata]]
     [:li
-     [:div {:class "item-container"}
-      (link-to (:id metadata) (:heading metadata))
-      (create-date (:date metadata))]]))
+     (link-to (:id metadata) (:heading metadata))
+     (create-date (:date metadata))]))
 
 (defn sort-by-date [items]
   (reverse (sort-by #(get-in (:metadata %) [:date]) items)))
