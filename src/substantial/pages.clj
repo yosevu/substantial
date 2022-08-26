@@ -29,7 +29,8 @@
 
 (defn build-index
   [site-url]
-  [:ul (map (create-index-link site-url) (sort-by-date (remove exclude-index (get-meta-dictionary))))])
+  [:ul {:class "index-links"}
+   (map (create-index-link site-url) (sort-by-date (remove exclude-index (get-meta-dictionary))))])
 
 (defn create-index-page
   "Build an index page

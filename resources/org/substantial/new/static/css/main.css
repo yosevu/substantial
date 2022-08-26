@@ -127,6 +127,7 @@ mark {
 ol,
 ul {
   margin: 0.125rem 0;
+  padding-left: 1.25rem;
 }
 
 ol li,
@@ -285,8 +286,8 @@ img {
 }
 
 /* Custom Styles */
-.backlinks {
-  padding-left: 1.25rem;
+.index-links {
+  padding: 0;
 }
 
 .index-link {
