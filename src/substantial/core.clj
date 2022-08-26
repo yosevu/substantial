@@ -16,9 +16,9 @@
 (defn write-pages
   "Write `pages` to files with."
   [path pages]
-  (map (fn [[page-name content]]
-         (spit (str path "/" (name page-name) ".html") content))
-       pages))
+  (doall (map (fn [[page-name content]]
+                (spit (str path (name page-name) ".html") content))
+              pages)))
 
 (defn parse-args
   [args]
@@ -54,11 +54,11 @@
    (get-meta-dictionary (:content-path (get-opts args)))
    (let [opts (get-opts args)
          config (get-config)
+         index (create-index-page config)
          notes (get-notes (:content-path opts))
-         note-pages (create-note-pages config notes)
-         index (create-index-page config)]
-     (write-pages (:static-path opts) note-pages)
+         note-pages (create-note-pages config notes)]
      (write-file (str (:static-path opts) "index.html") index)
+     (write-pages (:static-path opts) note-pages)
      (println (str "Built " (count-pages (:static-path opts)) " pages."))
      (reset-meta-dictionary))))
 
